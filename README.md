@@ -1,129 +1,76 @@
-# Professional Freelance Link Tree
+# Personal Link Tree
 
-A premium, ultra-modern link tree for freelance web designers and developers. Features include a stunning GLSL shader background, click-to-reveal animation, and smooth transitions that give potential clients a memorable first impression.
+A premium, interactive personal link tree with elegant animations and a luxury aesthetic.
 
-![Preview](preview.jpg) <!-- You'll need to add your own preview image -->
+![Personal Link Tree](assets/preview.jpg)
 
 ## Features
 
-- 🌙 Elegant dark mode UI with a professional aesthetic
-- ✨ Interactive GLSL shader background with click-to-reveal effect
-- 🎭 Ultra-smooth animations using GSAP
-- 📱 Fully responsive and mobile-optimized design
-- 🔗 Structured links with descriptions for freelance platforms
-- 🌊 Premium microinteractions and hover effects
-- 🚀 Lightweight and fast-loading
+- **Interactive Welcome Screen**: Beautiful shader-based welcome screen with subtle gold particle effects
+- **Premium Design**: Elegant dark theme with gold accents and professional typography
+- **Smooth Animations**: GSAP-powered animations with staggered reveals and parallax effects
+- **Responsive Layout**: Adapts perfectly to all screen sizes
+- **Custom Cursor**: Elegant custom cursor with interactive hover effects
+- **Link Cards**: Stylish cards for your important links with hover animations
+- **Profile Section**: Clean profile display with status indicator
+- **Service Categories**: Showcase your services or skills
+- **Testimonials**: Display feedback from clients or colleagues
 
-## Customization for Your Freelance Business
+## Technologies Used
 
-### 1. Update Your Profile Information
+- HTML5, CSS3, JavaScript
+- GSAP (GreenSock Animation Platform)
+- Three.js for WebGL shaders
+- AOS (Animate On Scroll)
+- Lenis for smooth scrolling
 
-Edit the profile section in `index.html`:
+## Getting Started
 
-```html
-<div class="profile">
-    <div class="profile-image">
-        <!-- Replace with your profile image -->
-        <img src="your-profile-image.jpg" alt="Your Name">
-    </div>
-    <h1>Your Name</h1>
-    <div class="profession">Web Designer & Developer</div>
-    <p class="bio">Your professional bio here...</p>
-</div>
-```
+1. Clone the repository:
+   ```
+   git clone https://github.com/Gcavazo1/Personal_link_tree.git
+   ```
 
-### 2. Update Your Service Offerings
+2. Open `index.html` in your browser to view the project.
 
-Edit the services array in `script.js`:
+3. Customize the content in `script.js` to add your own links, services, and testimonials.
 
-```javascript
-const services = [
-    "Web Design",
-    "Web Development",
-    "UI/UX Design",
-    "Responsive Design",
-    "E-commerce",
-    "WordPress"
-];
-```
+4. Replace `assets/profilePicture.jpg` with your own profile image.
 
-### 3. Update Your Professional Links
+## Customization
 
-Edit the links array in `script.js` to point to your freelance profiles:
+### Adding Links
+
+Edit the `links` array in `script.js` to add your own links:
 
 ```javascript
 const links = [
     {
-        title: "Fiverr",
-        url: "https://fiverr.com/your-profile",
-        icon: "🌟",
-        description: "Professional web design & development services"
+        title: "Fiverr Profile",
+        url: "https://www.fiverr.com/s/6Y217ER",
+        icon: "⭐",
+        description: "Hire me for premium web development and design services"
     },
-    // Add your other professional profiles
+    // Add more links here
 ];
 ```
 
-### 4. Customize Colors and Branding
+### Changing Colors
 
-Modify the color variables in the `:root` section of `styles.css`:
+The color scheme can be modified in the `:root` section of `styles.css`.
 
-```css
-:root {
-    --bg-primary: #121212;
-    --bg-secondary: #1A1A1A;
-    --text-primary: #E0E0E0;
-    --text-secondary: #B0B0B0;
-    --text-highlight: #FFFFFF;
-    --accent: #00ADB5; /* Change to match your personal brand */
-}
-```
+## Credits
 
-## Deployment Options for Freelancers
-
-### 1. GitHub Pages (Free)
-
-1. Create a GitHub repository
-2. Upload your link tree files
-3. Go to repository settings > Pages
-4. Select your main branch and click save
-5. Your site will be live at `https://yourusername.github.io/repository-name`
-
-### 2. Netlify (Free)
-
-1. Create a Netlify account
-2. Drag and drop your project folder to Netlify
-3. Your site will be live with a Netlify subdomain
-4. You can connect a custom domain in the site settings
-
-### 3. Vercel (Free)
-
-1. Create a Vercel account
-2. Import your project from GitHub or upload directly
-3. Your site will be live instantly with a Vercel subdomain
-4. You can connect a custom domain in the project settings
-
-### 4. Custom Domain (Recommended for Professionals)
-
-Purchase a domain from Namecheap, GoDaddy, or Google Domains and connect it to your deployment option. A custom domain like `yourname.com` or `yourname.design` looks more professional to potential clients.
-
-## Using This Link Tree Effectively for Freelancing
-
-1. **Include Client Testimonials**: Consider adding a subtle testimonial section to build trust
-2. **Add a Call-to-Action**: Make it clear what you want potential clients to do
-3. **Feature Recent Work**: Include links to your best and most recent projects
-4. **Track Analytics**: Add Google Analytics or a similar tool to track visitor behavior
-5. **Update Regularly**: Keep your links and project portfolio updated
-
-## Libraries Used
-
-- [GSAP](https://greensock.com/gsap/) - For professional animations
-- [Lenis](https://lenis.studiofreight.com/) - For smooth scrolling
-- [Three.js](https://threejs.org/) - For GLSL shader implementation
+- Created by Gabriel Cavazos
+- Shader effects inspired by premium web experiences
+- Icons and design elements carefully crafted for a luxury feel
 
 ## License
 
-This project is MIT licensed.
+This project is available for personal use. For commercial use, please contact the author.
 
----
+## Contact
 
-Made with ❤️ for freelancers who want to stand out from the crowd 
+- GitHub: [Gcavazo1](https://github.com/Gcavazo1)
+- Portfolio: [Dev Portfolio](https://gcavazo1.github.io/GigaCode_Dev_Showcase_Website/)
+- Fiverr: [Fiverr Profile](https://www.fiverr.com/s/6Y217ER) 

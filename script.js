@@ -1,22 +1,28 @@
 // Link data - customize with your own links
 const links = [
     {
-        title: "Design Portfolio",
-        url: "#",
-        icon: "✦",
-        description: "Explore my premium web design projects & case studies"
+        title: "Fiverr Profile",
+        url: "https://www.fiverr.com/s/6Y217ER",
+        icon: "⭐",
+        description: "Hire me for premium web development and design services"
+    },
+    {
+        title: "Dev Portfolio",
+        url: "https://gcavazo1.github.io/GigaCode_Dev_Showcase_Website/",
+        icon: "🚀",
+        description: "Explore my complete development portfolio and showcase"
+    },
+    {
+        title: "GitHub",
+        url: "https://github.com/Gcavazo1",
+        icon: "⟡",
+        description: "Check out my open source projects and contributions"
     },
     {
         title: "Development Services",
         url: "#",
-        icon: "⟡",
-        description: "Custom web development for discerning businesses"
-    },
-    {
-        title: "Luxury Web Design",
-        url: "#",
         icon: "◈",
-        description: "Bespoke website designs for high-end brands & services"
+        description: "Custom web development for discerning businesses"
     },
     {
         title: "Client Showcase",
@@ -29,12 +35,6 @@ const links = [
         url: "#",
         icon: "◎",
         description: "Strategic digital presence consulting for businesses"
-    },
-    {
-        title: "Schedule Consultation",
-        url: "#",
-        icon: "⧉",
-        description: "Book a discovery call to discuss your premium project"
     },
     {
         title: "Contact",
@@ -54,84 +54,399 @@ const services = [
     "Art Direction"
 ];
 
+// Testimonials data - add real testimonials for credibility
+const testimonials = [
+    {
+        quote: "Working with this designer was transformative for our brand. The attention to detail and premium aesthetic elevated our digital presence beyond expectations.",
+        author: "Sarah Johnson",
+        company: "Luxury Interiors Co.",
+        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+    },
+    {
+        quote: "The level of sophistication and technical excellence delivered was exceptional. Our conversion rates have increased by 40% since the redesign.",
+        author: "Michael Chen",
+        company: "Prestige Ventures",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+    },
+    {
+        quote: "A true artisan of digital design. The custom animations and attention to brand positioning created a website that perfectly captures our premium offering.",
+        author: "Elizabeth Taylor",
+        company: "Elite Boutique",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+    }
+];
+
 // DOM elements
 const linksContainer = document.querySelector('.links');
 const profile = document.querySelector('.profile');
 const cursor = document.querySelector('.custom-cursor');
 const cursorFollower = document.querySelector('.custom-cursor-follower');
 
-// Initialize smooth scroll
-const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    direction: 'vertical',
-    smooth: true
-});
-
-function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
+// Initialize animations with ultra-smooth feel
+function setupAnimations() {
+    console.log('[Debug] Setting up animations with ultra-smooth timing');
+    
+    // Profile animation with slower, more elegant reveal
+    const profile = document.querySelector('.profile');
+    if (profile) {
+        gsap.from(profile, {
+            y: 40,
+            opacity: 0,
+            duration: 1.8,
+            ease: 'power2.out',
+            delay: 0.5
+        });
+    }
+    
+    // Section headers with cascade effect
+    const sectionHeaders = document.querySelectorAll('.section-header');
+    if (sectionHeaders.length > 0) {
+        gsap.from(sectionHeaders, {
+            y: 30,
+            opacity: 0,
+            duration: 1.5,
+            ease: 'power2.out',
+            stagger: 0.3,
+            delay: 0.8
+        });
+    }
+    
+    // Staggered animation for links
+    const linkItems = document.querySelectorAll('.link-item');
+    if (linkItems.length > 0) {
+        gsap.fromTo(linkItems, {
+            opacity: 0,
+            y: 30,
+            scale: 0.98
+        }, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.12,
+            duration: 1.2,
+            ease: "power3.out",
+            delay: 1.0
+        });
+    }
+    
+    // Testimonial cards with staggered reveal
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    if (testimonialCards.length > 0) {
+        gsap.fromTo(testimonialCards, {
+            opacity: 0,
+            y: 50,
+            scale: 0.95
+        }, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.2,
+            duration: 1.5,
+            ease: "power2.out",
+            delay: 1.2
+        });
+    }
+    
+    // Footer fade in animation with subtle bounce
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        gsap.from(footer, {
+            opacity: 0,
+            y: 20,
+            duration: 1.5,
+            ease: "back.out(1.2)",
+            delay: 1.4
+        });
+    }
+    
+    // Social icons with staggered animations
+    const socialIcons = document.querySelectorAll('.social-link');
+    if (socialIcons.length > 0) {
+        gsap.fromTo(socialIcons, {
+            opacity: 0,
+            scale: 0,
+            y: 10
+        }, {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            stagger: 0.15,
+            duration: 1,
+            ease: "back.out(2)",
+            delay: 1.6
+        });
+    }
+    
+    // Add subtle parallax effect for premium depth
+    setupParallaxEffect();
 }
 
-requestAnimationFrame(raf);
-
-// Custom cursor implementation
-function setupCustomCursor() {
-    document.addEventListener('mousemove', (e) => {
-        gsap.to(cursor, {
-            x: e.clientX,
-            y: e.clientY,
-            duration: 0.1,
-            ease: 'power1.out'
-        });
-        
-        gsap.to(cursorFollower, {
-            x: e.clientX,
-            y: e.clientY,
-            duration: 0.5,
-            ease: 'power2.out'
-        });
+// Custom cursor functionality
+function initCustomCursor() {
+    const cursor = document.getElementById('custom-cursor');
+    const cursorDot = document.getElementById('cursor-dot');
+    
+    if (!cursor || !cursorDot) {
+        console.error('[Debug] Custom cursor elements not found');
+        return;
+    }
+    
+    console.log('[Debug] Initializing custom cursor');
+    
+    // Make sure cursor is visible immediately
+    gsap.set(cursor, { 
+        opacity: 1, 
+        scale: 1, 
+        xPercent: -50, 
+        yPercent: -50,
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2
     });
     
-    // Handle cursor behavior on interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .link-item, .canvas-container');
+    gsap.set(cursorDot, { 
+        opacity: 1, 
+        scale: 1, 
+        xPercent: -50, 
+        yPercent: -50,
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2
+    });
+    
+    // Variables to store cursor position
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let cursorX = window.innerWidth / 2;
+    let cursorY = window.innerHeight / 2;
+    let speed = 0.15; // Controls smoothness - lower is smoother
+
+    // Create a smoother cursor movement using GSAP ticker instead of mousemove events
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+    
+    // Use GSAP ticker for silky smooth animation
+    gsap.ticker.add(() => {
+        // Interpolate position for primary cursor (smooth follow)
+        cursorX += (mouseX - cursorX) * speed;
+        cursorY += (mouseY - cursorY) * speed;
+        
+        // Apply position with transform - using direct DOM manipulation for performance
+        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+        
+        // Dot follows mouse exactly for more precision
+        cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+    });
+    
+    // Add special effects for interactive elements with enhanced animations
+    const interactiveElements = document.querySelectorAll('a, button, .link-item, .social-link, .fallback-button');
     
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
-            cursor.classList.add('cursor-active');
-            cursorFollower.classList.add('follower-active');
+            // Grow cursor with elastic effect for premium feel
+            gsap.to(cursor, {
+                width: '50px', 
+                height: '50px', 
+                opacity: 0.6,
+                background: 'rgba(212, 184, 121, 0.15)',
+                duration: 0.4,
+                ease: "elastic.out(1, 0.3)"
+            });
+            
+            // Shrink dot for contrast
+            gsap.to(cursorDot, {
+                opacity: 0,
+                scale: 0.5,
+                duration: 0.3,
+                ease: "power2.out"
+            });
         });
         
         el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('cursor-active');
-            cursorFollower.classList.remove('follower-active');
+            // Return to normal with smooth animation
+            gsap.to(cursor, {
+                width: '12px', 
+                height: '12px', 
+                opacity: 1,
+                background: 'var(--accent)',
+                duration: 0.6,
+                ease: "power2.out"
+            });
+            
+            // Restore dot
+            gsap.to(cursorDot, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out"
+            });
         });
     });
 }
 
 // Generate link elements
 function generateLinks() {
-    links.forEach((link, index) => {
-        const linkElement = document.createElement('a');
-        linkElement.href = link.url;
-        linkElement.className = 'link-item';
-        linkElement.target = "_blank";
-        linkElement.rel = "noopener noreferrer";
+    console.log('[Debug] Starting generateLinks');
+    
+    // First, find or create the section that will contain the links
+    let section = document.querySelector('.section');
+    if (!section) {
+        console.log('[Debug] Creating new section');
+        section = document.createElement('div');
+        section.className = 'section';
+        section.setAttribute('data-aos', 'fade-up');
+        section.setAttribute('data-aos-delay', '100');
         
-        // Create link content with icon, title and description
-        linkElement.innerHTML = `
-            <div class="link-icon">${link.icon}</div>
-            <div class="link-content">
-                <div class="link-title">
-                    ${link.title}
-                    <span class="link-arrow">→</span>
-                </div>
-                ${link.description ? `<div class="link-description">${link.description}</div>` : ''}
-            </div>
+        // Create section header
+        const sectionHeader = document.createElement('div');
+        sectionHeader.className = 'section-header';
+        sectionHeader.innerHTML = `
+            <h2 class="section-title">Services</h2>
+            <div class="section-divider"></div>
         `;
+        section.appendChild(sectionHeader);
         
-        linksContainer.appendChild(linkElement);
+        // Add section to content
+        const content = document.querySelector('.content');
+        if (content) {
+            content.appendChild(section);
+        }
+    }
+    
+    // Find or create links container
+    let linksContainer = document.getElementById('links-container');
+    if (!linksContainer) {
+        console.log('[Debug] Creating new links container');
+        linksContainer = document.createElement('div');
+        linksContainer.id = 'links-container';
+        linksContainer.className = 'links-container';
+        section.appendChild(linksContainer);
+    }
+    
+    console.log('[Debug] Clearing existing links');
+    linksContainer.innerHTML = '';
+    
+    console.log('[Debug] Generating new links');
+    links.forEach((link, index) => {
+        const linkItem = document.createElement('a');
+        linkItem.href = link.url;
+        linkItem.className = 'link-item';
+        linkItem.target = '_blank';
+        linkItem.rel = 'noopener noreferrer';
+        linkItem.setAttribute('data-aos', 'fade-up');
+        linkItem.setAttribute('data-aos-delay', `${index * 100}`);
+        
+        const icon = document.createElement('div');
+        icon.className = 'link-icon';
+        icon.innerHTML = link.icon;
+        
+        const textContainer = document.createElement('div');
+        textContainer.className = 'link-text';
+        
+        const title = document.createElement('div');
+        title.className = 'link-title';
+        title.textContent = link.title;
+        
+        const description = document.createElement('div');
+        description.className = 'link-description';
+        description.textContent = link.description;
+        
+        const arrow = document.createElement('div');
+        arrow.className = 'link-arrow';
+        arrow.innerHTML = '→';
+        
+        textContainer.appendChild(title);
+        textContainer.appendChild(description);
+        
+        linkItem.appendChild(icon);
+        linkItem.appendChild(textContainer);
+        linkItem.appendChild(arrow);
+        
+        linksContainer.appendChild(linkItem);
+        
+        // Enhanced hover effects for premium feel
+        const hoverTimeline = gsap.timeline({ paused: true });
+        
+        hoverTimeline
+            .to(linkItem, { 
+                y: -5, 
+                scale: 1.01, 
+                boxShadow: '0 15px 40px rgba(0, 0, 0, 0.2), 0 0 15px rgba(212, 184, 121, 0.1)',
+                borderColor: 'rgba(212, 184, 121, 0.15)',
+                background: 'linear-gradient(180deg, rgba(19, 27, 46, 0.85), rgba(10, 15, 28, 0.95))',
+                duration: 0.5, 
+                ease: "power2.out" 
+            }, 0)
+            .to(icon, { 
+                scale: 1.15, 
+                rotation: 5,
+                backgroundColor: 'rgba(212, 184, 121, 0.15)',
+                boxShadow: '0 5px 15px rgba(0, 0, 0, 0.1)', 
+                duration: 0.5, 
+                ease: "back.out(1.5)" 
+            }, 0)
+            .to(arrow, { 
+                x: 3,
+                opacity: 1, 
+                color: 'var(--accent)',
+                duration: 0.4, 
+                ease: "power3.out" 
+            }, 0)
+            .to(description, { 
+                color: 'var(--text-primary)', 
+                duration: 0.5, 
+                ease: "power2.out" 
+            }, 0)
+            .to(title, { 
+                color: 'var(--text-highlight)', 
+                duration: 0.5, 
+                ease: "power2.out" 
+            }, 0);
+        
+        linkItem.addEventListener('mouseenter', () => {
+            hoverTimeline.play();
+            linkItem.addEventListener('mousemove', handleLinkMouseMove);
+        });
+        
+        linkItem.addEventListener('mouseleave', () => {
+            hoverTimeline.reverse();
+            linkItem.removeEventListener('mousemove', handleLinkMouseMove);
+            
+            gsap.to(linkItem, { 
+                rotationX: 0, 
+                rotationY: 0, 
+                duration: 0.6, 
+                ease: "power3.out" 
+            });
+        });
+        
+        function handleLinkMouseMove(e) {
+            const rect = linkItem.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const xPercent = (x / rect.width) - 0.5;
+            const yPercent = (y / rect.height) - 0.5;
+            
+            gsap.to(linkItem, { 
+                rotationY: xPercent * 6,
+                rotationX: yPercent * -6, 
+                transformPerspective: 1000,
+                duration: 0.6, 
+                ease: "power2.out",
+                overwrite: 'auto'
+            });
+            
+            gsap.to(icon, {
+                backgroundImage: `radial-gradient(circle at ${x}px ${y}px, rgba(212, 184, 121, 0.25), rgba(212, 184, 121, 0.08) 70%)`,
+                duration: 0.8,
+                ease: "power2.out",
+                overwrite: 'auto'
+            });
+        }
     });
+    
+    console.log('[Debug] Links generation complete');
 }
 
 // Generate service categories
@@ -152,6 +467,140 @@ function generateServiceCategories() {
         const availability = document.querySelector('.availability');
         if (availability && availability.parentNode) {
             availability.parentNode.insertBefore(categoriesContainer, availability.nextSibling);
+        }
+    }
+}
+
+// Generate testimonial section
+function generateTestimonials() {
+    // Only create testimonials if they don't already exist
+    if (!document.querySelector('.testimonials-section')) {
+        const testimonialsSection = document.createElement('div');
+        testimonialsSection.className = 'testimonials-section';
+        testimonialsSection.setAttribute('data-aos', 'fade-up');
+        testimonialsSection.setAttribute('data-aos-delay', '200');
+        
+        // Add section title
+        const sectionTitle = document.createElement('div');
+        sectionTitle.className = 'section-title';
+        sectionTitle.innerHTML = `
+            <h2>Client Testimonials</h2>
+            <div class="section-title-line"></div>
+        `;
+        testimonialsSection.appendChild(sectionTitle);
+        
+        // Create testimonials container
+        const testimonialsContainer = document.createElement('div');
+        testimonialsContainer.className = 'testimonials-container';
+        
+        // Add testimonials
+        testimonials.forEach((testimonial, index) => {
+            const testimonialCard = document.createElement('div');
+            testimonialCard.className = 'testimonial-card';
+            testimonialCard.setAttribute('data-delay', index);
+            
+            testimonialCard.innerHTML = `
+                <div class="testimonial-quote">"${testimonial.quote}"</div>
+                <div class="testimonial-author-container">
+                    <div class="testimonial-author-image">
+                        <img src="${testimonial.image}" alt="${testimonial.author}">
+                    </div>
+                    <div class="testimonial-author-info">
+                        <div class="testimonial-author">${testimonial.author}</div>
+                        <div class="testimonial-company">${testimonial.company}</div>
+                    </div>
+                </div>
+            `;
+            
+            testimonialsContainer.appendChild(testimonialCard);
+            
+            // Add premium hover effects for testimonial cards
+            testimonialCard.addEventListener('mouseenter', () => {
+                gsap.to(testimonialCard, {
+                    y: -10, 
+                    scale: 1.02, 
+                    boxShadow: '0 20px 50px rgba(0, 0, 0, 0.25), 0 0 20px rgba(212, 184, 121, 0.15)',
+                    borderColor: 'rgba(212, 184, 121, 0.2)',
+                    duration: 0.5,
+                    ease: "power3.out"
+                });
+                
+                // Animate the quote mark for extra premium feel
+                const quoteChar = testimonialCard.querySelector('.testimonial-quote');
+                if (quoteChar) {
+                    gsap.to(quoteChar, {
+                        color: 'var(--text-highlight)',
+                        duration: 0.5,
+                        ease: "power2.out"
+                    });
+                }
+            });
+            
+            testimonialCard.addEventListener('mouseleave', () => {
+                gsap.to(testimonialCard, {
+                    y: 0, 
+                    scale: 1, 
+                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
+                    borderColor: 'rgba(255, 255, 255, 0.05)',
+                    duration: 0.5,
+                    ease: "power3.out"
+                });
+                
+                // Reset quote styling
+                const quoteChar = testimonialCard.querySelector('.testimonial-quote');
+                if (quoteChar) {
+                    gsap.to(quoteChar, {
+                        color: 'var(--text-primary)',
+                        duration: 0.5,
+                        ease: "power2.out"
+                    });
+                }
+            });
+        });
+        
+        testimonialsSection.appendChild(testimonialsContainer);
+        
+        // Insert testimonials before the footer
+        const content = document.querySelector('.content');
+        const footer = document.querySelector('.footer');
+        
+        if (content && footer) {
+            content.insertBefore(testimonialsSection, footer);
+            
+            // Add premium staggered reveal animations for testimonial cards
+            // Will be triggered when testimonials are in view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const cards = testimonialsSection.querySelectorAll('.testimonial-card');
+                        
+                        gsap.fromTo(sectionTitle, 
+                            { opacity: 0, y: 30 },
+                            { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
+                        );
+                        
+                        gsap.fromTo(cards, 
+                            { opacity: 0, y: 50, scale: 0.95 },
+                            { 
+                                opacity: 1, 
+                                y: 0, 
+                                scale: 1, 
+                                stagger: 0.15, 
+                                duration: 1, 
+                                ease: "power3.out",
+                                delay: 0.3,
+                                onComplete: () => {
+                                    observer.disconnect();
+                                }
+                            }
+                        );
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            observer.observe(testimonialsSection);
+        } else if (content) {
+            content.appendChild(testimonialsSection);
         }
     }
 }
@@ -177,88 +626,67 @@ function createFooter() {
     }
 }
 
-// Add animations using GSAP
-function setupAnimations() {
-    console.log('[Debug] Setting up animations');
-    
-    // Profile animation - more subtle and elegant
-    gsap.fromTo(profile, {
-        opacity: 0,
-        y: -20
-    }, {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        ease: "power2.out"
-    });
-
-    // Categories animation with slight delay
-    const categories = document.querySelectorAll('.category');
-    gsap.fromTo(categories, {
-        opacity: 0,
-        y: 10,
-        scale: 0.95
-    }, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        stagger: 0.05,
-        duration: 0.7,
-        ease: "power2.out",
-        delay: 0.4
-    });
-
-    // Staggered animation for links with more pronounced staggering
-    const linkItems = document.querySelectorAll('.link-item');
-    gsap.fromTo(linkItems, {
-        opacity: 0,
-        y: 20,
-        scale: 0.98
-    }, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        stagger: 0.08,
-        duration: 0.9,
-        ease: "power3.out",
-        delay: 0.6
-    });
-    
-    // Footer fade in animation
-    const footer = document.querySelector('.footer');
-    if (footer) {
-        gsap.fromTo(footer, {
-            opacity: 0,
-            y: 10
-        }, {
-            opacity: 0.7,
-            y: 0,
-            duration: 1,
-            ease: "power2.out",
-            delay: 1.4
-        });
-    }
-    
-    // Status badge animation
-    const statusBadge = document.querySelector('.status-badge');
-    if (statusBadge) {
-        gsap.fromTo(statusBadge, {
-            opacity: 0,
-            scale: 0.8,
-            y: 10
-        }, {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "back.out(1.5)",
-            delay: 1
+// Create subtle parallax effects for depth
+function setupParallaxEffect() {
+    // Only initialize if window exists (browser environment)
+    if (typeof window !== 'undefined') {
+        // Parallax effect on profile
+        window.addEventListener('mousemove', function(e) {
+            // Get mouse position
+            const mouseX = e.clientX / window.innerWidth - 0.5;
+            const mouseY = e.clientY / window.innerHeight - 0.5;
+            
+            // Apply subtle movement to profile elements
+            const profileImage = document.querySelector('.profile-image');
+            const profileBackdrop = document.querySelector('.profile-image-backdrop');
+            const profileName = document.querySelector('.profile-name');
+            
+            if (profileImage) {
+                gsap.to(profileImage, {
+                    x: mouseX * 10,
+                    y: mouseY * 10,
+                    duration: 1,
+                    ease: 'power1.out'
+                });
+            }
+            
+            if (profileBackdrop) {
+                gsap.to(profileBackdrop, {
+                    x: mouseX * 15,
+                    y: mouseY * 15,
+                    duration: 1,
+                    ease: 'power1.out'
+                });
+            }
+            
+            if (profileName) {
+                gsap.to(profileName, {
+                    x: mouseX * 5,
+                    y: mouseY * 5,
+                    duration: 1,
+                    ease: 'power1.out'
+                });
+            }
+            
+            // Apply subtle tilt to link cards for 3D effect
+            const linkItems = document.querySelectorAll('.link-item');
+            linkItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                const itemX = ((rect.left + rect.width / 2) - e.clientX) / 25;
+                const itemY = ((rect.top + rect.height / 2) - e.clientY) / 25;
+                
+                gsap.to(item, {
+                    rotationY: -itemX,
+                    rotationX: itemY,
+                    transformPerspective: 900,
+                    transformOrigin: 'center center',
+                    duration: 0.8,
+                    ease: 'power1.out'
+                });
+            });
         });
     }
 }
-
-// Make setupAnimations globally available for shaders.js
-window.setupAnimations = setupAnimations;
 
 // Handle mouse movement for shader effects
 function handleMouseInteraction() {
@@ -298,68 +726,218 @@ function handleMouseInteraction() {
     });
 }
 
-// Initialize the page
-function init() {
-    console.log('[Debug] Initializing page');
-    generateLinks();
-    generateServiceCategories();
-    createFooter();
-    handleMouseInteraction();
-    setupCustomCursor();
-    
-    // Add direct click handler for the click prompt
-    const clickPrompt = document.getElementById('click-prompt');
-    if (clickPrompt) {
-        clickPrompt.addEventListener('click', function(e) {
-            console.log('[Debug] Click prompt clicked directly');
-            if (window.revealContent && !document.body.classList.contains('content-visible')) {
-                const x = (e.clientX / window.innerWidth) * 2 - 1;
-                const y = -(e.clientY / window.innerHeight) * 2 + 1;
-                window.revealContent(x, y);
-                
-                // Ensure the click prompt is removed
-                setTimeout(() => {
-                    if (this.parentNode) {
-                        this.parentNode.removeChild(this);
-                        console.log('[Debug] Click prompt removed after direct click');
-                    }
-                }, 500);
-            }
-        });
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize shaders for welcome screen
+    if (typeof initShaders === 'function') {
+        initShaders();
     }
     
-    // Add direct click handler for canvas container as a fallback
-    const canvasContainer = document.querySelector('.canvas-container');
-    if (canvasContainer) {
-        canvasContainer.addEventListener('click', function(e) {
-            console.log('[Debug] Canvas container clicked directly');
-            if (window.revealContent && !document.body.classList.contains('content-visible')) {
-                const x = (e.clientX / window.innerWidth) * 2 - 1;
-                const y = -(e.clientY / window.innerHeight) * 2 + 1;
-                window.revealContent(x, y);
-            }
-        });
+    // Initialize custom cursor
+    initCustomCursor();
+    
+    // Add click events for canvas
+    const canvas = document.getElementById('shader-canvas');
+    if (canvas) {
+        canvas.addEventListener('click', handleCanvasClick);
+        console.log('[Debug] Canvas click event listener added');
     }
     
-    // Add document-wide click handler as a final fallback
+    // Add document click handler as fallback
     document.addEventListener('click', function(e) {
-        console.log('[Debug] Document clicked');
-        if (window.revealContent && !document.body.classList.contains('content-visible')) {
-            const x = (e.clientX / window.innerWidth) * 2 - 1;
-            const y = -(e.clientY / window.innerHeight) * 2 + 1;
-            window.revealContent(x, y);
-        }
-        
-        // Force remove click prompt if it still exists after clicking
-        const clickPrompt = document.querySelector('.click-prompt');
-        if (clickPrompt && document.body.classList.contains('content-visible')) {
-            clickPrompt.remove();
-            console.log('[Debug] Forcibly removed click prompt');
+        if (e.target.id === 'shader-canvas') return;
+        if (!document.body.classList.contains('content-visible')) {
+            console.log('[Debug] Document click handler triggered content visibility');
+            handleCanvasClick(e);
         }
     });
     
-    // Note: setupAnimations is now called by shader.js after reveal effect
+    // Add a keyboard event listener for accessibility
+    document.addEventListener('keydown', function(e) {
+        if ((e.key === ' ' || e.key === 'Enter') && !document.body.classList.contains('content-visible')) {
+            console.log('[Debug] Key press detected, revealing content');
+            handleCanvasClick(new MouseEvent('click'));
+        }
+    });
+    
+    // Initialize mouse/touch interaction for shaders
+    if (typeof handleMouseInteraction === 'function') {
+        handleMouseInteraction();
+    }
+    
+    // Update copyright year
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+});
+
+// Ensure all sections are visible after the page is loaded
+function ensureContentVisible() {
+    console.log('[Debug] Running ensureContentVisible');
+    
+    // Force content container to be visible
+    const content = document.querySelector('.content');
+    if (content) {
+        console.log('[Debug] Setting content container styles');
+        content.style.opacity = '1';
+        content.style.visibility = 'visible';
+        content.style.transform = 'translateY(0)';
+        content.style.pointerEvents = 'all';
+    } else {
+        console.error('[Debug] Content container not found in ensureContentVisible');
+    }
+    
+    // Force sections to be visible
+    const allSections = document.querySelectorAll('.section, .testimonials-section, .footer, .link-item');
+    console.log(`[Debug] Found ${allSections.length} sections to make visible`);
+    allSections.forEach(section => {
+        section.style.opacity = '1';
+        section.style.visibility = 'visible';
+        section.style.transform = 'translateY(0)';
+    });
+    
+    // Make sure body has content-visible class
+    if (!document.body.classList.contains('content-visible')) {
+        console.log('[Debug] Adding content-visible class to body');
+        document.body.classList.add('content-visible');
+    }
+    
+    // Refresh AOS
+    if (typeof AOS !== 'undefined') {
+        console.log('[Debug] Final AOS refresh');
+        AOS.refresh();
+    }
 }
 
-// Initialize everything when the page loads
-window.addEventListener('load', init); 
+// Handle canvas click for the click-to-explore functionality
+function handleCanvasClick(e) {
+    console.log('[Debug] Canvas clicked - Starting content reveal process');
+    
+    // Only trigger if content is not already visible
+    if (!document.body.classList.contains('content-visible')) {
+        console.log('[Debug] Content not yet visible, proceeding with reveal');
+        
+        // Force content to be visible immediately
+        document.body.classList.add('content-visible');
+        console.log('[Debug] Added content-visible class to body');
+        
+        // Hide click prompt with animation
+        const clickPrompt = document.querySelector('.click-prompt');
+        if (clickPrompt) {
+            gsap.to(clickPrompt, {
+                opacity: 0,
+                visibility: 'hidden',
+                duration: 0.5,
+                ease: "power2.out",
+                onComplete: () => {
+                    clickPrompt.style.display = 'none';
+                    console.log('[Debug] Click prompt hidden');
+                }
+            });
+        }
+        
+        // Create profile section first
+        console.log('[Debug] Ensuring profile section exists');
+        ensureProfileSection();
+        
+        // Generate other content
+        console.log('[Debug] Starting content generation');
+        generateLinks();
+        console.log('[Debug] Links generated');
+        generateServiceCategories();
+        console.log('[Debug] Service categories generated');
+        generateTestimonials();
+        console.log('[Debug] Testimonials generated');
+        
+        // Force content to be visible
+        const content = document.querySelector('.content');
+        if (content) {
+            console.log('[Debug] Making content visible');
+            content.style.opacity = '1';
+            content.style.visibility = 'visible';
+            content.style.transform = 'translateY(0)';
+            content.style.pointerEvents = 'all';
+        } else {
+            console.error('[Debug] Content container not found!');
+        }
+        
+        // Create footer if it doesn't exist
+        createFooter();
+        console.log('[Debug] Footer created');
+        
+        // Try to use shader reveal if available
+        if (typeof window.revealContent === 'function') {
+            try {
+                const x = (e.clientX / window.innerWidth) * 2 - 1;
+                const y = -(e.clientY / window.innerHeight) * 2 + 1;
+                console.log('[Debug] Calling revealContent with:', x, y);
+                window.revealContent(x, y);
+            } catch (error) {
+                console.error('[Debug] Error in revealContent:', error);
+            }
+        }
+        
+        // Ensure animations run
+        if (typeof setupAnimations === 'function') {
+            console.log('[Debug] Running setupAnimations');
+            setupAnimations();
+        }
+        
+        // Initialize AOS
+        if (typeof AOS !== 'undefined') {
+            console.log('[Debug] Refreshing AOS');
+            AOS.refresh();
+        }
+        
+        // Ensure all content is visible after a delay
+        setTimeout(() => {
+            console.log('[Debug] Running final visibility check');
+            ensureContentVisible();
+        }, 100);
+    }
+}
+
+// Ensure profile section exists
+function ensureProfileSection() {
+    console.log('[Debug] Starting ensureProfileSection');
+    
+    let profile = document.querySelector('.profile');
+    console.log('[Debug] Existing profile section found:', !!profile);
+    
+    if (!profile) {
+        console.log('[Debug] Creating new profile section');
+        profile = document.createElement('div');
+        profile.className = 'profile';
+        profile.setAttribute('data-aos', 'fade-up');
+        
+        profile.innerHTML = `
+            <div class="profile-image-container">
+                <div class="profile-image">
+                    <img src="assets/profilePicture.jpg" alt="Gabriel Cavazos" onerror="console.error('[Debug] Failed to load profile picture')">
+                </div>
+                <div class="profile-image-backdrop"></div>
+                <div class="status-badge">Available for Work</div>
+            </div>
+            <h1 class="profile-name">Gabriel Cavazos</h1>
+            <p class="profile-bio">Premium Web Design & Development Services</p>
+            <div class="profile-tagline">Gigacode: Crafting digital experiences that elevate your brand</div>
+        `;
+        
+        // Add to content container
+        const content = document.querySelector('.content');
+        if (content) {
+            content.insertBefore(profile, content.firstChild);
+            console.log('[Debug] Profile section added to content container');
+        } else {
+            console.error('[Debug] Content container not found!');
+        }
+    }
+    
+    // Ensure profile is visible
+    if (profile) {
+        profile.style.opacity = '1';
+        profile.style.visibility = 'visible';
+        console.log('[Debug] Profile section visibility enforced');
+    }
+} 

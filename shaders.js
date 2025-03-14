@@ -177,21 +177,22 @@ const fragmentShader = `
     float particles(vec2 uv, float time) {
         float particles = 0.0;
         
-        for (int i = 0; i < 7; i++) {
-            // Create particle positions based on 3D hash
+        // Increased number of particles from 7 to 12
+        for (int i = 0; i < 12; i++) {
+            // Create particle positions based on 3D hash with enhanced variation
             vec3 p = hash3(vec2(float(i), float(i * i)));
             
-            // Animate particles
+            // Animate particles with slightly faster movement
             vec2 position = vec2(
-                fract(p.x + time * (0.1 + p.z * 0.1)),
-                fract(p.y + time * (0.05 + p.z * 0.05))
+                fract(p.x + time * (0.15 + p.z * 0.12)),
+                fract(p.y + time * (0.08 + p.z * 0.07))
             );
             
             // Calculate distance from uv to particle
             float dist = length(uv - position);
             
-            // Add to particle field with falloff
-            particles += 0.001 / (dist * dist * 150.0);
+            // Increased particle intensity and reduced falloff distance
+            particles += 0.0015 / (dist * dist * 120.0);
         }
         
         return particles;
@@ -211,7 +212,7 @@ const fragmentShader = `
         
         // Create luxury colors - premium gold & deep navy
         vec3 goldColor = vec3(0.83, 0.73, 0.45); // Rich gold
-        vec3 brightGold = vec3(0.9, 0.8, 0.5); // Highlight gold
+        vec3 brightGold = vec3(0.92, 0.85, 0.55); // Brighter highlight gold for particles
         vec3 darkNavyColor = vec3(0.04, 0.06, 0.15); // Deep navy
         vec3 accentBlue = vec3(0.3, 0.38, 0.5); // Blue accent
         
@@ -230,18 +231,18 @@ const fragmentShader = `
         vec3 color = mix(darkNavyColor, accentBlue, fluid3 * 0.7);
         color = mix(color, goldColor, smoothstep(0.2, 0.7, fluid2 * fluid1));
         
-        // Add particles
+        // Add particles with increased intensity
         float particleField = particles(distortedUV, time);
         
         // Add specular highlights that follow flow
         float specular = pow(fluid2 * fluid1, 5.0) * 0.8;
         color += specular * brightGold;
         
-        // Add subtle particle highlights
-        color += particleField * brightGold * 0.7;
+        // Enhanced particle highlights with increased brightness
+        color += particleField * brightGold * 1.2;
         
-        // Add swirling subtle color variations
-        color += vec3(0.04, 0.03, 0.0) * fbm(distortedUV * 8.0 + time * 0.05);
+        // Add swirling subtle color variations with more gold tint
+        color += vec3(0.05, 0.04, 0.01) * fbm(distortedUV * 8.0 + time * 0.05);
         
         return color;
     }

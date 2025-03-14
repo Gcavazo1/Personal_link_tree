@@ -3,96 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Premium Web Design & Development</title>
-    <meta name="description" content="Luxury web design and development services for discerning businesses. Crafting premium digital experiences that elevate your brand.">
+    <title>Premium Design Services | Personal Link Tree</title>
+    <meta name="description" content="Connect with my premium web design and development services. Elevate your digital presence with bespoke solutions.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Favicon - Add your own favicon.ico file -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- Contax Pro and Garamond Premier Pro fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Premium Design Services | Personal Link Tree">
+    <meta property="og:description" content="Connect with my premium web design and development services. Elevate your digital presence with bespoke solutions.">
+    <meta property="og:image" content="og-image.jpg">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Premium Design Services | Personal Link Tree">
+    <meta name="twitter:description" content="Connect with my premium web design and development services. Elevate your digital presence with bespoke solutions.">
+    <meta name="twitter:image" content="og-image.jpg">
+    <!-- Loader styles -->
+    <style>
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+        
+        .loader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+        
+        .loader-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: var(--accent);
+            animation: spin 1.5s linear infinite;
+        }
+        
+        .loader-ring:nth-child(1) {
+            width: 100%;
+            height: 100%;
+            border-width: 2px;
+            animation-duration: 2s;
+        }
+        
+        .loader-ring:nth-child(2) {
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            border-width: 2px;
+            border-top-color: var(--accent-secondary);
+            animation-duration: 1.5s;
+            animation-direction: reverse;
+        }
+        
+        .loader-ring:nth-child(3) {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+            border-width: 2px;
+            border-top-color: var(--text-highlight);
+            animation-duration: 1s;
+        }
+        
+        .loader-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Custom cursor elements -->
-    <div class="custom-cursor"></div>
-    <div class="custom-cursor-follower"></div>
-
-    <!-- Initial click prompt -->
-    <div class="click-prompt" id="click-prompt">Click to Enter</div>
-
-    <div class="container">
-        <div class="canvas-container">
-            <canvas id="shader-canvas"></canvas>
-        </div>
-        
-        <div class="content">
-            <div class="profile">
-                <div class="profile-image-container">
-                    <div class="profile-image-backdrop"></div>
-                    <div class="profile-image">
-                        <!-- Replace with your profile image -->
-                        <!-- <img src="your-profile-image.jpg" alt="Your Name"> -->
-                    </div>
-                    <div class="status-badge">Available</div>
-                </div>
-                <h1>Your Name <span>Design & Development</span></h1>
-                <div class="profession">Premium Digital Experiences</div>
-                <p class="bio">I create bespoke, high-end websites with meticulous attention to detail. Specializing in premium web experiences, I help discerning businesses establish a sophisticated online presence that resonates with their target audience.</p>
-                <p class="availability">Currently accepting select projects for Q2 2024</p>
-                <!-- Service categories will be added here by JavaScript -->
-            </div>
-            
-            <div class="links">
-                <!-- Links will be generated from JavaScript -->
-            </div>
-            
-            <!-- Footer will be added here by JavaScript -->
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <div class="loader-logo">GC</div>
         </div>
     </div>
 
-    <!-- Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Custom cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="custom-cursor" id="custom-cursor"></div>
+
+    <div class="container">
+        <canvas id="shader-canvas"></canvas>
+        
+        <div class="content" id="content">
+            <div class="profile" data-aos="fade-up">
+                <div class="profile-image-container">
+                    <div class="profile-image">
+                        <img src="assets/profilePicture.jpg" alt="Gabriel Cavazos">
+                    </div>
+                    <div class="profile-image-backdrop"></div>
+                    <div class="status-badge">Available for Work</div>
+                </div>
+                <h1 class="profile-name">Gabriel Cavazos</h1>
+                <p class="profile-bio">Premium Web Design & Development Services</p>
+                <div class="profile-tagline">Gigacode: Crafting digital experiences that elevate your brand</div>
+            </div>
+            
+            <div class="section" data-aos="fade-up" data-aos-delay="100">
+                <div class="section-header">
+                    <h2 class="section-title">Services</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div id="links-container" class="links-container"></div>
+            </div>
+            
+            <footer class="footer" data-aos="fade-up" data-aos-delay="300">
+                <div class="social-links">
+                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:your.email@example.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <div class="copyright">
+                    &copy; <span id="current-year"></span> Gabriel Cavazos. All rights reserved.
+                </div>
+            </footer>
+        </div>
+        
+        <div class="click-prompt" id="click-prompt">
+            <div class="click-prompt-text">Click Anywhere to Explore</div>
+            <div class="click-prompt-icon">
+                <i class="fas fa-mouse"></i>
+            </div>
+        </div>
+    </div>
     
-    <!-- Custom scripts -->
+    <!-- Scripts - Load in correct order -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1800,
+            easing: 'ease-out-cubic',
+            delay: 400,
+            once: false
+        });
+        
+        // Initialize Lenis smooth scroll after DOM is loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                direction: 'vertical',
+                smooth: true
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+
+            requestAnimationFrame(raf);
+        });
+    </script>
     <script src="shaders.js"></script>
     <script src="script.js"></script>
-    
-    <!-- Debug script -->
     <script>
-    // Add debug helpers
-    window.addEventListener('load', function() {
-        console.log('[Debug] Document loaded');
-        
-        // Add click event listener to canvas directly
-        const canvas = document.getElementById('shader-canvas');
-        if (canvas) {
-            canvas.addEventListener('click', function(e) {
-                console.log('[Debug] Canvas clicked at:', e.clientX, e.clientY);
-                
-                // Manually try to trigger reveal if needed
-                if (window.revealContent && typeof window.revealContent === 'function') {
-                    const x = (e.clientX / window.innerWidth) * 2 - 1;
-                    const y = -(e.clientY / window.innerHeight) * 2 + 1;
-                    console.log('[Debug] Trying to call revealContent with:', x, y);
-                    window.revealContent(x, y);
-                } else {
-                    console.error('[Debug] revealContent function not available');
-                }
-            });
-            
-            // Check if canvas container is also clickable
-            const canvasContainer = document.querySelector('.canvas-container');
-            if (canvasContainer) {
-                canvasContainer.addEventListener('click', function() {
-                    console.log('[Debug] Canvas container clicked');
-                });
+        // Ensure cursor is visible immediately
+        window.addEventListener('DOMContentLoaded', function() {
+            // Initialize custom cursor as soon as DOM is ready
+            if (typeof initCustomCursor === 'function') {
+                console.log('[Debug] Initializing custom cursor immediately');
+                initCustomCursor();
             }
-        } else {
-            console.error('[Debug] Shader canvas not found');
-        }
-    });
+        });
+        
+        // Loader functionality
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loader = document.getElementById('loader');
+                loader.classList.add('loader-hidden');
+            }, 1500);
+        });
+        
+        // Set current year in copyright
+        document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html> 
