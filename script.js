@@ -20,9 +20,10 @@ const links = [
     },
     {
         title: "Development Services",
-        url: "#",
+        url: "#services-modal",
         icon: "◈",
-        description: "Custom web development for discerning businesses"
+        description: "Custom web development for discerning businesses",
+        modal: true
     },
     {
         title: "Client Showcase",
@@ -32,26 +33,30 @@ const links = [
     },
     {
         title: "Digital Consulting",
-        url: "#",
+        url: "consulting.html",
         icon: "◎",
         description: "Strategic digital presence consulting for businesses"
     },
     {
         title: "Contact",
-        url: "mailto:your.email@example.com",
+        url: "contact.html",
         icon: "✉",
-        description: "Inquire about availability for select projects"
+        description: "Get in touch for premium digital services"
     }
 ];
 
 // Services offered - more premium and specific
 const services = [
     "Luxury Web Design",
-    "Custom Development",
-    "Digital Branding",
+    "E-commerce Development",
+    "Custom Web Applications",
     "UI/UX Design",
-    "E-commerce",
-    "Art Direction"
+    "Personal Portfolios",
+    "Website Audits & Analysis",
+    "SEO Optimization",
+    "Maintenance Plans",
+    "Brand Identity",
+    "Digital Consulting"
 ];
 
 // Testimonials data - add real testimonials for credibility
@@ -284,7 +289,7 @@ function initCustomCursor() {
     });
 }
 
-// Generate link elements
+// Generate link elements with enhanced functionality for modal
 function generateLinks() {
     console.log('[Debug] Starting generateLinks');
     
@@ -301,7 +306,7 @@ function generateLinks() {
         const sectionHeader = document.createElement('div');
         sectionHeader.className = 'section-header';
         sectionHeader.innerHTML = `
-            <h2 class="section-title">Services</h2>
+            <h2 class="section-title">Links</h2>
             <div class="section-divider"></div>
         `;
         section.appendChild(sectionHeader);
@@ -331,8 +336,18 @@ function generateLinks() {
         const linkItem = document.createElement('a');
         linkItem.href = link.url;
         linkItem.className = 'link-item';
-        linkItem.target = '_blank';
-        linkItem.rel = 'noopener noreferrer';
+        
+        // If link is modal, add modal trigger functionality
+        if (link.modal) {
+            linkItem.addEventListener('click', function(e) {
+                e.preventDefault();
+                openServicesModal();
+            });
+        } else {
+            linkItem.target = '_blank';
+            linkItem.rel = 'noopener noreferrer';
+        }
+        
         linkItem.setAttribute('data-aos', 'fade-up');
         linkItem.setAttribute('data-aos-delay', `${index * 100}`);
         
@@ -770,6 +785,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
+    
+    // Initialize services modal
+    setupServicesModal();
 });
 
 // Ensure all sections are visible after the page is loaded
@@ -940,4 +958,372 @@ function ensureProfileSection() {
         profile.style.visibility = 'visible';
         console.log('[Debug] Profile section visibility enforced');
     }
+}
+
+// Services Modal Functions
+function setupServicesModal() {
+    console.log('[Debug] Setting up services modal functionality');
+    
+    const modalOverlay = document.getElementById('services-modal-overlay');
+    const modal = document.getElementById('services-modal');
+    const closeButton = document.getElementById('services-modal-close');
+    
+    if (!modalOverlay || !modal || !closeButton) {
+        console.error('[Debug] Modal elements not found');
+        return;
+    }
+    
+    // Close modal when clicking the close button
+    closeButton.addEventListener('click', closeServicesModal);
+    
+    // Close modal when clicking outside the modal
+    modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay) {
+            closeServicesModal();
+        }
+    });
+    
+    // Close modal when pressing Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+            closeServicesModal();
+        }
+    });
+    
+    // Update any service links in the modal to close the modal first
+    const modalLinks = modal.querySelectorAll('a');
+    modalLinks.forEach(link => {
+        const originalHref = link.getAttribute('href');
+        link.addEventListener('click', function(e) {
+            closeServicesModal();
+            
+            // If link is a website or non-email, add a short delay
+            if (originalHref && !originalHref.startsWith('mailto:')) {
+                e.preventDefault();
+                setTimeout(() => {
+                    window.open(originalHref, '_blank');
+                }, 300);
+            }
+        });
+    });
+    
+    // Setup proposal form
+    setupProposalForm();
+    
+    console.log('[Debug] Services modal setup complete');
+}
+
+// Setup proposal form handling
+function setupProposalForm() {
+    const proposalForm = document.getElementById('proposal-form');
+    if (!proposalForm) {
+        console.error('[Debug] Proposal form not found');
+        return;
+    }
+    
+    console.log('[Debug] Setting up proposal form');
+    
+    // Handle form submission
+    proposalForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const serviceType = document.getElementById('service-type').value;
+        const projectScope = document.getElementById('project-scope').value;
+        const budgetRange = document.getElementById('budget-range').value;
+        const timeline = document.getElementById('timeline').value;
+        const projectDetails = document.getElementById('project-details').value;
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        
+        console.log('[Debug] Form submitted with values:', {
+            serviceType,
+            projectScope,
+            budgetRange,
+            timeline,
+            projectDetails,
+            name,
+            email
+        });
+        
+        // Create proposal object
+        const proposal = {
+            serviceType,
+            projectScope,
+            budgetRange,
+            timeline,
+            projectDetails,
+            name,
+            email,
+            date: new Date().toISOString()
+        };
+        
+        // Show success message after form submission
+        showProposalSuccess(proposal);
+    });
+    
+    // Add elegant animation to form elements
+    animateFormElements();
+}
+
+// Show success message after form submission
+function showProposalSuccess(proposal) {
+    const formElement = document.getElementById('proposal-form');
+    const submitButton = formElement.querySelector('.submit-button');
+    
+    // Animate button to show success
+    gsap.to(submitButton, {
+        backgroundColor: 'rgba(212, 184, 121, 0.3)',
+        scale: 1.05,
+        duration: 0.3,
+        ease: "power2.out",
+        onComplete: () => {
+            // Replace button text with success message
+            const originalText = submitButton.textContent;
+            submitButton.textContent = "Proposal Generated!";
+            
+            // In a production environment, this would send data to a server
+            // For now, redirect to email client with proposal details
+            console.log('[Debug] Preparing to send proposal to gcavazo1@gmail.com');
+            
+            setTimeout(() => {
+                // Create email content with proposal details
+                try {
+                    const subject = `Proposal Request: ${proposal.serviceType} from ${proposal.name}`;
+                    let body = `New Proposal Request:\n\n`;
+                    body += `Service: ${proposal.serviceType}\n`;
+                    body += `Scope: ${proposal.projectScope}\n`;
+                    body += `Budget: ${proposal.budgetRange}\n`;
+                    body += `Timeline: ${proposal.timeline}\n\n`;
+                    body += `Project Details: ${proposal.projectDetails}\n\n`;
+                    body += `Contact Info:\n`;
+                    body += `Name: ${proposal.name}\n`;
+                    body += `Email: ${proposal.email}\n`;
+                    
+                    // Encode body for mailto link
+                    const encodedBody = encodeURIComponent(body);
+                    const encodedSubject = encodeURIComponent(subject);
+                    
+                    // If we're not in a testing environment, open the email client
+                    if (window.location.protocol !== 'file:') {
+                        // Create a temporary hidden link and click it
+                        const emailLink = document.createElement('a');
+                        emailLink.href = `mailto:gcavazo1@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
+                        emailLink.style.display = 'none';
+                        document.body.appendChild(emailLink);
+                        
+                        // Give time for the success animation to complete, then open email
+                        setTimeout(() => {
+                            emailLink.click();
+                            document.body.removeChild(emailLink);
+                        }, 500);
+                    }
+                } catch (error) {
+                    console.error('[Debug] Error creating email link:', error);
+                }
+                
+                // Reset button
+                gsap.to(submitButton, {
+                    backgroundColor: 'rgba(212, 184, 121, 0.1)',
+                    scale: 1,
+                    duration: 0.3,
+                    ease: "power2.out",
+                    onComplete: () => {
+                        setTimeout(() => {
+                            submitButton.textContent = originalText;
+                            formElement.reset();
+                        }, 500);
+                    }
+                });
+            }, 1500);
+        }
+    });
+}
+
+// Add elegant animations to form elements for premium feel
+function animateFormElements() {
+    const selects = document.querySelectorAll('.form-select');
+    const inputs = document.querySelectorAll('.form-input');
+    const textarea = document.querySelector('.form-textarea');
+    
+    // Function to handle focus animations
+    const handleFocus = (element) => {
+        gsap.to(element, {
+            borderColor: 'var(--accent)',
+            boxShadow: '0 0 0 2px rgba(212, 184, 121, 0.15)',
+            duration: 0.3,
+            ease: "power2.out"
+        });
+        
+        // Animate the label for extra luxury feel
+        const label = element.previousElementSibling;
+        if (label && label.classList.contains('form-label')) {
+            gsap.to(label, {
+                color: 'var(--accent)',
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        }
+    };
+    
+    // Function to handle blur animations
+    const handleBlur = (element) => {
+        if (!element.value) {
+            gsap.to(element, {
+                borderColor: 'rgba(212, 184, 121, 0.15)',
+                boxShadow: 'none',
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        }
+        
+        // Reset label color
+        const label = element.previousElementSibling;
+        if (label && label.classList.contains('form-label')) {
+            gsap.to(label, {
+                color: 'var(--text-secondary)',
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        }
+    };
+    
+    // Add event listeners to all form elements
+    [...selects, ...inputs].forEach(element => {
+        element.addEventListener('focus', () => handleFocus(element));
+        element.addEventListener('blur', () => handleBlur(element));
+    });
+    
+    if (textarea) {
+        textarea.addEventListener('focus', () => handleFocus(textarea));
+        textarea.addEventListener('blur', () => handleBlur(textarea));
+    }
+}
+
+function openServicesModal() {
+    console.log('[Debug] Opening services modal');
+    
+    const modalOverlay = document.getElementById('services-modal-overlay');
+    const modal = document.getElementById('services-modal');
+    
+    if (!modalOverlay || !modal) {
+        console.error('[Debug] Modal elements not found');
+        return;
+    }
+    
+    // Add active class to overlay first
+    modalOverlay.classList.add('active');
+    
+    // Add active class to modal with a slight delay for the entrance animation
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
+    
+    // Disable body scroll while allowing modal content to scroll
+    document.body.style.overflow = 'hidden';
+    
+    // Ensure mouse wheel scrolling works in the modal content
+    const modalContent = document.querySelector('.services-modal-content');
+    if (modalContent) {
+        // Explicitly set overflow properties to ensure scrolling works
+        modal.style.overflowY = 'auto';
+        modalContent.style.overflowY = 'auto';
+        
+        // Reset scroll position to top when opening
+        modal.scrollTop = 0;
+        modalContent.scrollTop = 0;
+        
+        // Add an event listener to prevent scrolling issues
+        modal.addEventListener('wheel', function(e) {
+            // Prevent the event from bubbling up to the body
+            e.stopPropagation();
+        });
+        
+        console.log('[Debug] Modal scroll properties set: overflowY =', modal.style.overflowY);
+    }
+    
+    // Run animations for modal sections
+    const sections = modal.querySelectorAll('.services-modal-section');
+    gsap.fromTo(sections, 
+        { opacity: 0, y: 30 },
+        { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.8, 
+            stagger: 0.15, 
+            ease: "power3.out",
+            delay: 0.3
+        }
+    );
+    
+    // Animate service cards with staggered effect
+    const serviceCards = modal.querySelectorAll('.service-card');
+    gsap.fromTo(serviceCards, 
+        { opacity: 0, y: 20, scale: 0.95 },
+        { 
+            opacity: 1, 
+            y: 0, 
+            scale: 1,
+            duration: 0.6, 
+            stagger: 0.08, 
+            ease: "back.out(1.7)",
+            delay: 0.5
+        }
+    );
+    
+    // Animate process steps
+    const processSteps = modal.querySelectorAll('.process-step');
+    gsap.fromTo(processSteps, 
+        { opacity: 0, x: -20 },
+        { 
+            opacity: 1, 
+            x: 0, 
+            duration: 0.5, 
+            stagger: 0.07, 
+            ease: "power2.out",
+            delay: 0.7
+        }
+    );
+    
+    // Animate proposal builder form
+    const proposalBuilder = modal.querySelector('.proposal-builder');
+    if (proposalBuilder) {
+        gsap.fromTo(proposalBuilder,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                delay: 0.9
+            }
+        );
+    }
+    
+    console.log('[Debug] Services modal opened');
+}
+
+function closeServicesModal() {
+    console.log('[Debug] Closing services modal');
+    
+    const modalOverlay = document.getElementById('services-modal-overlay');
+    const modal = document.getElementById('services-modal');
+    
+    if (!modalOverlay || !modal) {
+        console.error('[Debug] Modal elements not found');
+        return;
+    }
+    
+    // Remove active class from modal first
+    modal.classList.remove('active');
+    
+    // Remove active class from overlay with a delay
+    setTimeout(() => {
+        modalOverlay.classList.remove('active');
+    }, 300);
+    
+    // Re-enable body scroll
+    document.body.style.overflow = '';
+    
+    console.log('[Debug] Services modal closed');
 } 

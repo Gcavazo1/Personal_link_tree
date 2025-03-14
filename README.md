@@ -73,4 +73,26 @@ This project is available for personal use. For commercial use, please contact t
 
 - GitHub: [Gcavazo1](https://github.com/Gcavazo1)
 - Portfolio: [Dev Portfolio](https://gcavazo1.github.io/GigaCode_Dev_Showcase_Website/)
-- Fiverr: [Fiverr Profile](https://www.fiverr.com/s/6Y217ER) 
+- Fiverr: [Fiverr Profile](https://www.fiverr.com/s/6Y217ER)
+
+## New Digital Consulting Page
+
+The repository now includes a dedicated Digital Consulting page with these features:
+
+- **Interactive Shader Effects**: Advanced WebGL shaders provide dynamic visual effects that respond to user scrolling and mouse interactions.
+- **Scroll-Based Animations**: Page elements build themselves as the user scrolls down, creating an engaging experience.
+- **Elegant Design**: Premium aesthetic with carefully selected typography, colors, and spacing.
+- **Service Packages**: Showcases consulting offerings with attractive pricing and details.
+- **Interactive Process Timeline**: Visual representation of the consulting process steps.
+- **Client Testimonials**: Curated success stories to build trust and credibility.
+- **Contact Form**: Integrated inquiry form for potential clients.
+
+### Technical Features
+
+- Uses Three.js for WebGL shader rendering
+- Implements Lenis for smooth scrolling
+- GSAP animations for element transitions
+- Custom cursor effects for enhanced interactivity
+- Fully responsive across all device sizes
+
+Access the consulting page at `/consulting.html`. 

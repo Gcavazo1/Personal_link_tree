@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Gabriel Cavazos</title>
+    <meta name="description" content="Get in touch with Gabriel Cavazos for premium web development, design services, and digital consulting.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="contact-styles.css">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Contact Gabriel Cavazos">
+    <meta property="og:description" content="Get in touch for premium web development, design services, and digital consulting.">
+    <meta property="og:image" content="assets/og-image.jpg">
+    <meta property="og:url" content="https://your-website.com/contact.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body class="contact-page">
+    <!-- Custom cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="custom-cursor" id="custom-cursor"></div>
+    
+    <!-- Shader Canvas for Background -->
+    <canvas id="contact-shader-canvas"></canvas>
+    
+    <!-- Back Navigation -->
+    <div class="back-nav">
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Home</span>
+        </a>
+    </div>
+    
+    <div class="contact-container">
+        <header class="contact-header">
+            <div class="contact-logo">
+                <h1>Gabriel Cavazos</h1>
+                <div class="tagline">Premium Digital Services</div>
+            </div>
+        </header>
+        
+        <main class="contact-main">
+            <div class="contact-grid">
+                <!-- Left side: Contact Information -->
+                <div class="contact-info-container section-to-animate">
+                    <div class="contact-intro">
+                        <h2 class="contact-title">Let's Connect</h2>
+                        <div class="section-divider"></div>
+                        <p class="contact-message">
+                            Thank you for your interest in my premium digital services. I'm dedicated to creating exceptional digital experiences that elevate your brand and drive measurable results.
+                        </p>
+                    </div>
+                    
+                    <div class="contact-details">
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="method-info">
+                                <h3>Email</h3>
+                                <a href="mailto:gcavazo1@gmail.com">gcavazo1@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="method-info">
+                                <h3>Location</h3>
+                                <p>Laredo, Texas, United States</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="method-info">
+                                <h3>Availability</h3>
+                                <p>Available at all times<br>Most responsive 8AM - 8PM CST</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-connect">
+                        <h3 class="social-title">Connect With Me</h3>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/gabriel.cavazos.5473/" target="_blank" rel="noopener noreferrer" class="social-link">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.instagram.com/gabrielzosavac/" target="_blank" rel="noopener noreferrer" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://github.com/Gcavazo1" target="_blank" rel="noopener noreferrer" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="map-container">
+                        <div class="map-overlay">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d111193.26313184325!2d-99.56471507414126!3d27.530767624550803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662c295a4419875%3A0x8a55a373097d3831!2sLaredo%2C%20TX!5e0!3m2!1sen!2sus!4v1710407562989!5m2!1sen!2sus"
+                                width="100%"
+                                height="300"
+                                style="border:0;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                            <div class="map-accent"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right side: Contact Form -->
+                <div class="contact-form-container section-to-animate">
+                    <h2 class="form-title">Send a Message</h2>
+                    <div class="section-divider"></div>
+                    
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number (Optional)</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="inquiry-type">Type of Inquiry</label>
+                            <select id="inquiry-type" name="inquiry-type" required>
+                                <option value="" disabled selected>Select an option...</option>
+                                <option value="web-development">Web Development</option>
+                                <option value="digital-consulting">Digital Consulting</option>
+                                <option value="ui-ux-design">UI/UX Design</option>
+                                <option value="seo-optimization">SEO Optimization</option>
+                                <option value="other">Other Services</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget">Budget Range (Optional)</label>
+                            <select id="budget" name="budget">
+                                <option value="" disabled selected>Select a range...</option>
+                                <option value="under-5k">Under $5,000</option>
+                                <option value="5k-10k">$5,000 - $10,000</option>
+                                <option value="10k-20k">$10,000 - $20,000</option>
+                                <option value="over-20k">Over $20,000</option>
+                                <option value="not-sure">Not sure yet</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <div class="captcha-container">
+                                <div class="g-recaptcha" data-sitekey="6LcyKfQqAAAAADcGhM2zQF2einkv6jtJa_l6EESU"></div>
+                                <div class="captcha-note">This helps prevent spam submissions</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <div class="privacy-notice">
+                                By submitting this form, you agree to my <a href="#" class="gold-text">privacy policy</a>.
+                                Your information will never be shared with third parties.
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="contact-footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Gabriel Cavazos</h3>
+                    <p>Premium Digital Services</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="consulting.html">Consulting</a>
+                    <a href="index.html#services-modal">Services</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; <span id="current-year"></span> Gabriel Cavazos. All rights reserved.
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="contact.js"></script>
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html> 

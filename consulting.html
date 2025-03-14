@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Digital Consulting | Gabriel Cavazos</title>
+    <meta name="description" content="Expert digital strategy consulting to transform your online presence. Strategic guidance for businesses seeking digital excellence.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="consulting-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Contax Pro and Garamond Premier Pro fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Premium Digital Consulting | Gabriel Cavazos">
+    <meta property="og:description" content="Expert digital strategy consulting to transform your online presence. Strategic guidance for businesses seeking digital excellence.">
+    <meta property="og:image" content="og-image.jpg">
+    <meta property="og:url" content="https://yourdomain.com/consulting">
+    <meta property="og:type" content="website">
+</head>
+<body class="consulting-page">
+    <!-- Custom cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="custom-cursor" id="custom-cursor"></div>
+
+    <!-- Back Navigation -->
+    <div class="back-nav">
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Services</span>
+        </a>
+    </div>
+
+    <!-- Shader Canvas for Scroll Effects -->
+    <canvas id="scroll-shader-canvas"></canvas>
+
+    <div class="consulting-container">
+        <header class="consulting-header">
+            <div class="consulting-logo">
+                <h1>Gabriel Cavazos</h1>
+                <div class="tagline">Digital Strategy Consulting</div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="consulting-hero section-to-animate" data-scroll-section id="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Strategic Digital Consulting</h1>
+                <p class="hero-subtitle">Expert guidance to elevate your digital presence and drive measurable growth</p>
+                <div class="hero-cta">
+                    <a href="#contact" class="cta-button">Schedule a Consultation</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="consulting-services section-to-animate" data-scroll-section id="services">
+            <div class="section-header">
+                <h2 class="section-title">Premium Consulting Services</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">✧</div>
+                    <div class="service-content">
+                        <h3>Strategy Sessions</h3>
+                        <p>One-on-one virtual consultations to define and refine your digital presence strategy</p>
+                        <div class="service-price">From $250 / session</div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">◈</div>
+                    <div class="service-content">
+                        <h3>Digital Audits & Roadmaps</h3>
+                        <p>Comprehensive analysis of your digital footprint with actionable recommendations</p>
+                        <div class="service-price">From $950</div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">◎</div>
+                    <div class="service-content">
+                        <h3>Conversion Optimization</h3>
+                        <p>Expert review of your digital platforms to identify opportunities to increase conversions</p>
+                        <div class="service-price">From $750</div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⟡</div>
+                    <div class="service-content">
+                        <h3>Technology Selection</h3>
+                        <p>Expert guidance in choosing the right platforms, tools, and tech stack for your needs</p>
+                        <div class="service-price">From $500</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Packages Section -->
+        <section class="consulting-packages section-to-animate" data-scroll-section id="packages">
+            <div class="section-header">
+                <h2 class="section-title">Consulting Packages</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Assessment Package</h3>
+                        <div class="package-price">$1,000</div>
+                    </div>
+                    <div class="package-content">
+                        <ul class="package-features">
+                            <li>Initial 90-minute consultation</li>
+                            <li>Comprehensive digital audit</li>
+                            <li>Detailed recommendations report</li>
+                            <li>30-day follow-up call</li>
+                        </ul>
+                        <a href="#contact" class="package-cta">Get Started</a>
+                    </div>
+                </div>
+                
+                <div class="package-card featured">
+                    <div class="package-badge">Most Popular</div>
+                    <div class="package-header">
+                        <h3>Strategic Growth</h3>
+                        <div class="package-price">$2,500/month</div>
+                    </div>
+                    <div class="package-content">
+                        <ul class="package-features">
+                            <li>4 hours of consultation monthly</li>
+                            <li>Continuous strategy refinement</li>
+                            <li>Monthly performance analytics</li>
+                            <li>Priority email support</li>
+                            <li>Quarterly roadmap updates</li>
+                        </ul>
+                        <a href="#contact" class="package-cta">Get Started</a>
+                    </div>
+                </div>
+                
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Enterprise Advisory</h3>
+                        <div class="package-price">Custom Pricing</div>
+                    </div>
+                    <div class="package-content">
+                        <ul class="package-features">
+                            <li>Dedicated strategic advisor</li>
+                            <li>Unlimited consultation access</li>
+                            <li>Cross-team implementation support</li>
+                            <li>Technology stack evaluation</li>
+                            <li>Custom digital transformation plan</li>
+                        </ul>
+                        <a href="#contact" class="package-cta">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="consulting-process section-to-animate" data-scroll-section id="process">
+            <div class="section-header">
+                <h2 class="section-title">Consulting Process</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Discovery</h3>
+                        <p>In-depth assessment of your current digital presence, goals, and challenges</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Analysis</h3>
+                        <p>Comprehensive evaluation of opportunities, competitive landscape, and technological requirements</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Strategy Development</h3>
+                        <p>Creation of tailored recommendations and actionable implementation roadmap</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Implementation Support</h3>
+                        <p>Guidance during execution with regular check-ins and strategic refinement</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h3>Performance Analysis</h3>
+                        <p>Measurement of results against key metrics with data-driven optimization recommendations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="consulting-testimonials section-to-animate" data-scroll-section id="testimonials">
+            <div class="section-header">
+                <h2 class="section-title">Client Success Stories</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <p class="testimonial-quote">"Gabriel's strategic insights completely transformed our digital presence. His recommendations led to a 40% increase in qualified leads within just three months."</p>
+                        <div class="testimonial-author">
+                            <div class="author-name">Alexandra Winters</div>
+                            <div class="author-company">CEO, Luminary Brands</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <p class="testimonial-quote">"The depth of technical knowledge combined with business acumen is what sets this consulting service apart. Our e-commerce conversion rate improved by 28% after implementing the recommended changes."</p>
+                        <div class="testimonial-author">
+                            <div class="author-name">Marcus Chen</div>
+                            <div class="author-company">Director, Elevate Commerce</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <p class="testimonial-quote">"Working with Gabriel gave us the clarity we needed for our digital transformation initiative. His strategic roadmap saved us from costly mistakes and accelerated our timeline by months."</p>
+                        <div class="testimonial-author">
+                            <div class="author-name">Sophia Rodriguez</div>
+                            <div class="author-company">CTO, Nexus Solutions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="consulting-contact section-to-animate" data-scroll-section id="contact">
+            <div class="section-header">
+                <h2 class="section-title">Begin Your Digital Transformation</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <p>Ready to elevate your digital strategy? Schedule a complimentary 30-minute discovery call to discuss your needs and explore how my consulting services can drive meaningful results for your business.</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:gcavazo1@gmail.com">gcavazo1@gmail.com</a>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Book a call: Available Mon-Fri, 9am-5pm CST</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="consulting-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Service of Interest</label>
+                        <select id="service" name="service" required>
+                            <option value="" disabled selected>Select a service...</option>
+                            <option value="strategy-session">Strategy Session</option>
+                            <option value="digital-audit">Digital Audit & Roadmap</option>
+                            <option value="conversion-optimization">Conversion Optimization</option>
+                            <option value="technology-selection">Technology Selection</option>
+                            <option value="assessment-package">Assessment Package</option>
+                            <option value="strategic-growth">Strategic Growth Package</option>
+                            <option value="enterprise-advisory">Enterprise Advisory</option>
+                            <option value="custom">Custom Consultation</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="message">Tell us about your project</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Send Inquiry</button>
+                </form>
+            </div>
+        </section>
+
+        <footer class="consulting-footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Gabriel Cavazos</h3>
+                    <p>Premium Digital Consulting</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="index.html">Services</a>
+                    <a href="#process">Process</a>
+                    <a href="#packages">Packages</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:gcavazo1@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; <span id="current-year"></span> Gabriel Cavazos. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="consulting-shader.js"></script>
+    <script src="consulting.js"></script>
+    <script>
+        // Set current year in copyright
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html> 
