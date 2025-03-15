@@ -435,6 +435,8 @@ function setupFormValidation() {
         if (recaptchaResponse.length === 0) {
             isValid = false;
             errorMessages.push('Please complete the CAPTCHA verification');
+            showErrorMessage('Please complete the CAPTCHA verification to submit the form.');
+            return;
         }
         
         // Handle validation result
@@ -442,12 +444,12 @@ function setupFormValidation() {
             // Add reCAPTCHA token to the data
             data['g-recaptcha-response'] = recaptchaResponse;
             
-            // Simulate form submission
+            // Submit form
             submitForm(data);
         } else {
             // Display error messages
             console.error('Form validation failed:', errorMessages);
-            alert('Please correct the following issues:\n' + errorMessages.join('\n'));
+            showErrorMessage('Please correct the following issues:<br>' + errorMessages.join('<br>'));
         }
     });
 }
@@ -467,15 +469,28 @@ function submitForm(data) {
     submitButton.innerHTML = `<span>Sending...</span> <i class="fas fa-spinner fa-spin"></i>`;
     submitButton.disabled = true;
     
+    // Log submission for debugging
+    console.log('Submitting form to API:', data);
+    
     // Send data to the backend server
-    fetch('http://localhost:3000/api/contact', {
+    fetch('https://gabriel-cavazos-contact-api.vercel.app/api/contact', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
+        credentials: 'omit' // Important for CORS
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            // If the response is not in the 200-299 range
+            // Get more detailed error information
+            return response.json().then(errorData => {
+                throw new Error(errorData.message || 'Server error occurred');
+            });
+        }
+        return response.json();
+    })
     .then(result => {
         // Reset button
         submitButton.innerHTML = originalButtonText;
@@ -496,7 +511,13 @@ function submitForm(data) {
         console.error('Submission error:', error);
         submitButton.innerHTML = originalButtonText;
         submitButton.disabled = false;
-        showErrorMessage('Error connecting to server. Please try again later.');
+        
+        // Display more user-friendly error message
+        if (error.message && error.message.includes('CAPTCHA')) {
+            showErrorMessage('CAPTCHA verification failed. Please refresh the page and try again.');
+        } else {
+            showErrorMessage('Error connecting to server. Please try again later or contact us directly at gcavazo1@gmail.com.');
+        }
     });
 }
 
