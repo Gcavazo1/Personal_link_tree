@@ -76,11 +76,8 @@ function initShaders() {
     );
     camera.position.z = 1;
     
-    // Load noise texture
-    const textureLoader = new THREE.TextureLoader();
-    noiseTexture = textureLoader.load('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAABCpJREFUWEeVl9uOHEUQhr+qnp3ZXa/XxtgYDIYAQuQiSnIRRQpIkeABeA9ueQ8eIleREim5SZQrilAQNomJDdiyvd7D7EyfKlXVPT2zs15Dgmh2e6a7u/7646+q2hIvfPTFPB28Y1S8ZYy8ZpR6I03SrVKqiRTve1sp0Vn5HiuhmHrn+84VO855Y4xxo9I5d+acPzbWHRZlcfjlR6/uaUTlLxae2KZ9+OlMm4+11ntKJzIe5zSbJORZQp4pkkSjlH7uJTjnGY4rBqMJw9GEsrSUZWXT5H7h3KefP7j/XQ+l30ee+vCzr0bpyn1V5I2N9Q47V7rsrnfYWNNk2qBU8kL+F5Djk4zDow7Pjrqc9Ies9G6+d/vH7zxAA/DRF99bVTR/urre5O0312htNsmL9LmYP9FczpTVBIS+4ej4hIf/PBulXX6AMdXJwf17vQBw/+6hb20O3nr/vQ2ubbRJswSlVRR/eG6GWc8h8z4+x+ceOxM+wFiH955ev8uPPz2VKvnUVwf3bgTTBYD7d3+hXVzeev+DTa5fbVHkKVqpGPdCVVGFdgExZXw2vHAWKiLGQ5qmOOt4+Muag/u/WSn2kpW1ax/f/WY5gLu/0l5Z3rx5Y51XtwoaeUqS6EXxqd2iLKI7O0vDc2Uzr8IZXPCbvjvj0eO1oxh/DwC+OnhvOYCfabXXX755c42Njeau0ljl4fU5vwxg0kX71aCBU3yYihjH02ddHj9dH3qT/wUA3/1Cq72y/cbNG2usrTZo5AlJqkkSTbIAIP4NbUEHXUwRIgUr+IyxnkePn3He7Z/YychU3pdrwDuSorlzY6fF1uYKjUZCnqsQYqWCW7RKUBgyCGFOCNmiS3QhqzH3s3yZwdBw+KTL8fHg1LnxozgR40GUajR3rm6l7Gyv0CxysiwhTTWJDgABSiWgE9ApPkvRKsQdYs/KECZjCQAfnxeGp0+7PHvWd1X5uRcfEYBOG9fbW8XW9faZADRahRDPARR5RqM5A6Cn7V8EIPJiwHGvy8nJoJM2stfrJ5fEEF0FI06cXc+ypl5vZKw0MzLNojbC98XamGlwzhVgLVVl6fcnDIaGojj5zXt/z6P+9kZ9BXi8NxRF+tbGWsGVKy2KPKPICxpZRpZrUl2Peg3xzPtwxToPJupgrE2oKk9ZVpyeD+j1BqYsxydm2Pstcc5/7yw/xGFUAOg0z265tHl9e63J5maLZqMgTZOwchIVfbAY25lrVPCHZTQacXrWo9s/NcPh8UPn7D3nzaNEu2/kfGHZng0jEaC5M2nt7LS3t9NrO5vrjVZrtZElSappFHkgT9MsrH3vfFkZM54Me/1e/3TY6Zz0uoPTYVVNTrwZ/+3M5MSWjxxMHz+X6/nnfn5/+O/fpfgLe91MTD5YCgsAAAAASUVORK5CYII=');
-    noiseTexture.wrapS = THREE.RepeatWrapping;
-    noiseTexture.wrapT = THREE.RepeatWrapping;
+    // Create a simple noise texture programmatically
+    noiseTexture = createNoiseTexture();
     
     // Create shader material
     shaderMaterial = createShaderMaterial();
@@ -104,6 +101,40 @@ function initShaders() {
     window.updateShaderScroll = updateScrollProgress;
     window.updateShaderSection = updateCurrentSection;
     window.updateActiveSection = updateActiveSection;
+}
+
+// Create a noise texture programmatically to fix WebGL warnings
+function createNoiseTexture() {
+    // Create a small canvas for noise generation
+    const size = 64;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    
+    // Fill with noise
+    const imageData = ctx.createImageData(size, size);
+    const data = imageData.data;
+    
+    for (let i = 0; i < data.length; i += 4) {
+        const value = Math.floor(Math.random() * 256);
+        data[i] = value;       // r
+        data[i + 1] = value;   // g
+        data[i + 2] = value;   // b
+        data[i + 3] = 255;     // a (fully opaque)
+    }
+    
+    ctx.putImageData(imageData, 0, 0);
+    
+    // Create texture from canvas
+    const texture = new THREE.Texture(canvas);
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.generateMipmaps = false; // Prevent mipmap generation error
+    texture.minFilter = THREE.LinearFilter; // Use LinearFilter instead of default MipMapLinearFilter
+    texture.needsUpdate = true;
+    
+    return texture;
 }
 
 // Create the shader material with custom shaders
