@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
     setupFormValidation();
     setupAnimations();
     setupCustomCursor();
+    
+    // Test API connectivity
+    testApiConnectivity();
 });
 
 // Custom cursor
@@ -31,16 +34,25 @@ function setupCustomCursor() {
         
         // Check if cursor is over interactable elements
         const target = e.target;
-        if (target.tagName.toLowerCase() === 'a' || 
-            target.tagName.toLowerCase() === 'button' || 
-            target.parentElement.tagName.toLowerCase() === 'a' ||
-            target.parentElement.tagName.toLowerCase() === 'button' ||
-            target.classList.contains('contact-method') ||
-            target.parentElement.classList.contains('contact-method') ||
-            target.classList.contains('social-link') ||
-            target.parentElement.classList.contains('social-link') ||
-            target.classList.contains('map-overlay') ||
-            target.parentElement.classList.contains('map-overlay')) {
+        
+        // Add null checks to prevent errors
+        if (!target) return;
+        
+        const isLink = target.tagName && target.tagName.toLowerCase() === 'a';
+        const isButton = target.tagName && target.tagName.toLowerCase() === 'button';
+        const isParentLink = target.parentElement && target.parentElement.tagName && target.parentElement.tagName.toLowerCase() === 'a';
+        const isParentButton = target.parentElement && target.parentElement.tagName && target.parentElement.tagName.toLowerCase() === 'button';
+        const hasContactClass = target.classList && target.classList.contains('contact-method');
+        const parentHasContactClass = target.parentElement && target.parentElement.classList && target.parentElement.classList.contains('contact-method');
+        const hasSocialClass = target.classList && target.classList.contains('social-link');
+        const parentHasSocialClass = target.parentElement && target.parentElement.classList && target.parentElement.classList.contains('social-link');
+        const hasMapClass = target.classList && target.classList.contains('map-overlay');
+        const parentHasMapClass = target.parentElement && target.parentElement.classList && target.parentElement.classList.contains('map-overlay');
+        
+        if (isLink || isButton || isParentLink || isParentButton || 
+            hasContactClass || parentHasContactClass || 
+            hasSocialClass || parentHasSocialClass || 
+            hasMapClass || parentHasMapClass) {
             
             cursor.style.width = '60px';
             cursor.style.height = '60px';
@@ -472,14 +484,19 @@ function submitForm(data) {
     // Log submission for debugging
     console.log('Submitting form to API:', data);
     
+    // API endpoint URL - make sure this is correct
+    const apiUrl = 'https://gabriel-cavazos-contact-api.vercel.app/api/contact';
+    console.log('Submitting to URL:', apiUrl);
+    
     // Send data to the backend server
-    fetch('https://gabriel-cavazos-contact-api.vercel.app/api/contact', {
+    fetch(apiUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
-        credentials: 'omit' // Important for CORS
+        credentials: 'omit', // Important for CORS
+        mode: 'cors' // Explicitly set CORS mode
     })
     .then(response => {
         if (!response.ok) {
@@ -512,8 +529,16 @@ function submitForm(data) {
         submitButton.innerHTML = originalButtonText;
         submitButton.disabled = false;
         
+        // Check if it's a connection error
+        const errorMessage = error.message || '';
+        if (errorMessage.includes('Failed to fetch') || 
+            errorMessage.includes('NetworkError') ||
+            errorMessage.includes('connection') ||
+            errorMessage.includes('network')) {
+            showErrorMessage(`Unable to connect to the server. Please check your internet connection and try again, or email me directly at gcavazo1@gmail.com.`);
+        }
         // Display more user-friendly error message
-        if (error.message && error.message.includes('CAPTCHA')) {
+        else if (errorMessage.includes('CAPTCHA')) {
             showErrorMessage('CAPTCHA verification failed. Please refresh the page and try again.');
         } else {
             showErrorMessage('Error connecting to server. Please try again later or contact us directly at gcavazo1@gmail.com.');
@@ -621,4 +646,33 @@ function setupAnimations() {
             }
         });
     }, 100);
+}
+
+// Test API connectivity
+function testApiConnectivity() {
+    console.log('Testing API connectivity...');
+    const apiUrl = 'https://gabriel-cavazos-contact-api.vercel.app/api/health';
+    
+    fetch(apiUrl, {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'omit'
+    })
+    .then(response => {
+        if (!response.ok) {
+            console.error('API health check failed with status:', response.status);
+            return;
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data && data.status === 'ok') {
+            console.log('API health check passed:', data);
+        } else {
+            console.error('API health check returned unexpected data:', data);
+        }
+    })
+    .catch(error => {
+        console.error('API health check failed:', error);
+    });
 } 
