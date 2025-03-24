@@ -1083,9 +1083,91 @@ body.content-visible .click-prompt {
 
 /* Add spacing between sections */
 .section {
-    width: 100%;
-    margin-bottom: 5rem;
+    margin-bottom: 2.5rem;
     position: relative;
+}
+
+.section-header {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-highlight);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.section-divider {
+    height: 3px;
+    width: 60px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    margin: 0.5rem 0 1.5rem;
+}
+
+/* Creative Builds specific styling */
+.links-section:nth-of-type(1) .section-title {
+    color: var(--accent);
+}
+
+.links-section:nth-of-type(1) .section-divider {
+    background: linear-gradient(90deg, var(--accent), transparent);
+    width: 80px;
+}
+
+.links-section:nth-of-type(1) .link-item {
+    background: linear-gradient(145deg, rgba(19, 27, 46, 0.85), rgba(15, 23, 42, 0.9));
+    border: 1px solid rgba(212, 184, 121, 0.15);
+}
+
+.links-section:nth-of-type(1) .link-icon {
+    background-color: rgba(212, 184, 121, 0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Services specific styling */
+.links-section:nth-of-type(2) .section-title {
+    color: var(--text-highlight);
+}
+
+.links-section:nth-of-type(2) .section-divider {
+    background: linear-gradient(90deg, var(--text-highlight), transparent);
+    width: 60px;
+}
+
+/* Section transition animations */
+.links-section {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.links-section:hover {
+    transform: translateY(-5px);
+}
+
+/* Section Category Label Animation */
+.section-title {
+    position: relative;
+    overflow: hidden;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.4s ease;
+}
+
+.section-title:hover::after {
+    width: 100%;
 }
 
 /* Premium Services Modal */
@@ -1788,6 +1870,114 @@ body.content-visible .click-prompt {
 
 @media (max-width: 768px) {
     .roi-packages {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Portfolio Section Styles */
+.portfolio-section {
+    margin: 4rem 0;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.portfolio-item {
+    background: rgba(20, 30, 45, 0.75);
+    border: 1px solid rgba(212, 184, 121, 0.2);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(212, 184, 121, 0.1);
+    border-color: rgba(212, 184, 121, 0.3);
+}
+
+.portfolio-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.portfolio-item:hover .portfolio-image img {
+    transform: scale(1.05);
+}
+
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 15, 25, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.portfolio-overlay-content {
+    text-align: center;
+}
+
+.view-project {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(90deg, rgba(212, 184, 121, 0.9), rgba(212, 184, 121, 0.7));
+    border-radius: 30px;
+    color: #0a0f19;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.portfolio-item:hover .view-project {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.portfolio-details {
+    padding: 1.5rem;
+}
+
+.portfolio-title {
+    font-size: 1.25rem;
+    color: var(--text-highlight);
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+}
+
+.portfolio-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .portfolio-grid {
         grid-template-columns: 1fr;
     }
 } 

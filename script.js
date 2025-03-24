@@ -1,6 +1,24 @@
 // Link data - customize with your own links
 const links = [
     {
+        title: "Norma's Creations",
+        url: "https://normascreations-landing.vercel.app/",
+        icon: "🎀",
+        description: "Handcrafted premium wreaths and seasonal decorations"
+    },
+    {
+        title: "CogniCube AI",
+        url: "https://cognicube-landing.vercel.app/",
+        icon: "🧠",
+        description: "Advanced AI solutions for enterprise applications"
+    },
+    {
+        title: "MoonPups",
+        url: "https://moonpups-landing.vercel.app/",
+        icon: "🌙",
+        description: "Creative digital experiences for pet enthusiasts"
+    },
+    {
         title: "Fiverr Profile",
         url: "https://www.fiverr.com/s/6Y217ER",
         icon: "⭐",
@@ -292,47 +310,55 @@ function initCustomCursor() {
 // Generate link elements with enhanced functionality for modal
 function generateLinks() {
     console.log('[Debug] Starting generateLinks');
-    
-    // First, find or create the section that will contain the links
-    let section = document.querySelector('.section');
-    if (!section) {
-        console.log('[Debug] Creating new section');
-        section = document.createElement('div');
-        section.className = 'section';
-        section.setAttribute('data-aos', 'fade-up');
-        section.setAttribute('data-aos-delay', '100');
-        
-        // Create section header
-        const sectionHeader = document.createElement('div');
-        sectionHeader.className = 'section-header';
-        sectionHeader.innerHTML = `
-            <h2 class="section-title">Links</h2>
-            <div class="section-divider"></div>
-        `;
-        section.appendChild(sectionHeader);
-        
-        // Add section to content
-        const content = document.querySelector('.content');
-        if (content) {
-            content.appendChild(section);
-        }
+    const content = document.querySelector('.content');
+    if (!content) {
+        console.error('[Debug] Content container not found');
+        return;
     }
     
-    // Find or create links container
-    let linksContainer = document.getElementById('links-container');
-    if (!linksContainer) {
-        console.log('[Debug] Creating new links container');
-        linksContainer = document.createElement('div');
-        linksContainer.id = 'links-container';
-        linksContainer.className = 'links-container';
-        section.appendChild(linksContainer);
-    }
+    // Clear any existing link sections
+    const existingLinkSections = document.querySelectorAll('.links-section');
+    existingLinkSections.forEach(section => section.remove());
     
-    console.log('[Debug] Clearing existing links');
-    linksContainer.innerHTML = '';
+    // Group links by category
+    const creativeBuilds = links.slice(0, 3); // First 3 links are landing pages
+    const serviceLinks = links.slice(3); // Remaining links are services
     
-    console.log('[Debug] Generating new links');
-    links.forEach((link, index) => {
+    // Create Creative Builds section
+    createLinkSection('Creative Builds', creativeBuilds, content, 0);
+    
+    // Create Services section 
+    createLinkSection('Services', serviceLinks, content, 1);
+    
+    console.log('[Debug] Links generation complete');
+}
+
+// Helper function to create a section of links
+function createLinkSection(title, sectionLinks, parentContainer, sectionIndex) {
+    console.log(`[Debug] Creating section: ${title}`);
+    
+    // Create section
+    const section = document.createElement('div');
+    section.className = 'section links-section';
+    section.setAttribute('data-aos', 'fade-up');
+    section.setAttribute('data-aos-delay', `${sectionIndex * 100}`);
+    
+    // Create section header
+    const sectionHeader = document.createElement('div');
+    sectionHeader.className = 'section-header';
+    sectionHeader.innerHTML = `
+        <h2 class="section-title">${title}</h2>
+        <div class="section-divider"></div>
+    `;
+    section.appendChild(sectionHeader);
+    
+    // Create links container
+    const linksContainer = document.createElement('div');
+    linksContainer.className = 'links-container';
+    section.appendChild(linksContainer);
+    
+    // Add links to container
+    sectionLinks.forEach((link, index) => {
         const linkItem = document.createElement('a');
         linkItem.href = link.url;
         linkItem.className = 'link-item';
@@ -461,7 +487,30 @@ function generateLinks() {
         }
     });
     
-    console.log('[Debug] Links generation complete');
+    // Insert section after profile or after the last links section
+    const portfolio = document.querySelector('.portfolio-section');
+    if (title === 'Creative Builds') {
+        // Insert Creative Builds after profile
+        const profile = document.querySelector('.profile');
+        if (profile) {
+            parentContainer.insertBefore(section, profile.nextSibling);
+        } else {
+            parentContainer.insertBefore(section, parentContainer.firstChild);
+        }
+    } else {
+        // Insert Services after Creative Builds
+        const creativeBuildsSection = document.querySelector('.links-section');
+        if (creativeBuildsSection) {
+            parentContainer.insertBefore(section, creativeBuildsSection.nextSibling);
+        } else {
+            // If portfolio exists, insert before it
+            if (portfolio) {
+                parentContainer.insertBefore(section, portfolio);
+            } else {
+                parentContainer.appendChild(section);
+            }
+        }
+    }
 }
 
 // Generate service categories
@@ -743,6 +792,15 @@ function handleMouseInteraction() {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('[Debug] DOM fully loaded and parsed');
+    
+    setupAnimations();
+    ensureProfileSection();
+    generateLinks();
+    generatePortfolioSection();
+    generateServiceCategories();
+    generateTestimonials();
+    
     // Initialize shaders for welcome screen
     if (typeof initShaders === 'function') {
         initShaders();
@@ -1326,4 +1384,105 @@ function closeServicesModal() {
     document.body.style.overflow = '';
     
     console.log('[Debug] Services modal closed');
+}
+
+// Generate Portfolio Section
+function generatePortfolioSection() {
+    console.log('[Debug] Generating portfolio section');
+    
+    // Find or create portfolio section
+    let portfolioSection = document.querySelector('.portfolio-section');
+    if (portfolioSection) {
+        console.log('[Debug] Portfolio section already exists, clearing it');
+        portfolioSection.innerHTML = '';
+    } else {
+        console.log('[Debug] Creating new portfolio section');
+        portfolioSection = document.createElement('div');
+        portfolioSection.className = 'section portfolio-section';
+        portfolioSection.setAttribute('data-aos', 'fade-up');
+    }
+    
+    // Create section header
+    const sectionHeader = document.createElement('div');
+    sectionHeader.className = 'section-header';
+    sectionHeader.innerHTML = `
+        <h2 class="section-title">Portfolio Highlights</h2>
+        <div class="section-divider"></div>
+    `;
+    portfolioSection.appendChild(sectionHeader);
+    
+    const portfolioGrid = document.createElement('div');
+    portfolioGrid.className = 'portfolio-grid';
+    
+    // Portfolio items
+    const portfolioItems = [
+        {
+            title: "Norma's Creations",
+            description: "Premium handcrafted wreaths and seasonal decorations",
+            image: "https://placehold.co/600x350/0a1525/4facfe?text=Norma's+Creations", // Placeholder until real image is added
+            url: "https://normascreations-landing.vercel.app/"
+        },
+        {
+            title: "CogniCube AI",
+            description: "Enterprise AI solution with advanced analytics dashboard",
+            image: "https://placehold.co/600x350/0a1525/4facfe?text=CogniCube+AI", // Placeholder until real image is added
+            url: "https://cognicube-landing.vercel.app/"
+        },
+        {
+            title: "MoonPups",
+            description: "Creative digital platform for pet enthusiasts",
+            image: "https://placehold.co/600x350/0a1525/4facfe?text=MoonPups", // Placeholder until real image is added
+            url: "https://moonpups-landing.vercel.app/"
+        }
+    ];
+    
+    portfolioItems.forEach((item, index) => {
+        const portfolioItem = document.createElement('a');
+        portfolioItem.href = item.url;
+        portfolioItem.target = "_blank";
+        portfolioItem.className = 'portfolio-item';
+        portfolioItem.setAttribute('data-aos', 'fade-up');
+        portfolioItem.setAttribute('data-aos-delay', `${index * 100}`);
+        
+        portfolioItem.innerHTML = `
+            <div class="portfolio-image">
+                <img src="${item.image}" alt="${item.title}">
+                <div class="portfolio-overlay">
+                    <div class="portfolio-overlay-content">
+                        <div class="view-project">View Project</div>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-details">
+                <h3 class="portfolio-title">${item.title}</h3>
+                <p class="portfolio-description">${item.description}</p>
+            </div>
+        `;
+        
+        portfolioGrid.appendChild(portfolioItem);
+    });
+    
+    portfolioSection.appendChild(portfolioGrid);
+    
+    // Add to content in the right position
+    const content = document.querySelector('.content');
+    if (content) {
+        // Find all link sections
+        const linkSections = document.querySelectorAll('.links-section');
+        
+        if (linkSections.length > 0) {
+            // Get the last link section
+            const lastLinkSection = linkSections[linkSections.length - 1];
+            
+            // Insert portfolio after the last link section
+            if (lastLinkSection.nextSibling) {
+                content.insertBefore(portfolioSection, lastLinkSection.nextSibling);
+            } else {
+                content.appendChild(portfolioSection);
+            }
+        } else {
+            // If no link sections exist, append to content
+            content.appendChild(portfolioSection);
+        }
+    }
 } 
