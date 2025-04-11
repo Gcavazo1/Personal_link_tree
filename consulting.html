@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Digital Consulting | Gabriel Cavazos</title>
-    <meta name="description" content="Expert digital strategy consulting to transform your online presence. Strategic guidance for businesses seeking digital excellence.">
+    <title>Digital Consulting Services | Gabriel Cavazos</title>
+    <meta name="description" content="Expert digital strategy consulting to transform your online presence. Strategic guidance for businesses seeking digital excellence and measurable growth.">
+    <meta name="keywords" content="digital consulting, digital strategy, business consulting, web consulting, Gabriel Cavazos, website audit, conversion optimization, digital transformation">
+    <meta name="author" content="Gabriel Cavazos">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://gcavazo1.github.io/personal_link_tree/consulting.html">
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="consulting-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,29 +20,92 @@
     <!-- Contax Pro and Garamond Premier Pro fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    <link rel="icon" href="assets/favicon_initials.png" type="image/png">
     <!-- Open Graph tags -->
-    <meta property="og:title" content="Premium Digital Consulting | Gabriel Cavazos">
-    <meta property="og:description" content="Expert digital strategy consulting to transform your online presence. Strategic guidance for businesses seeking digital excellence.">
-    <meta property="og:image" content="og-image.jpg">
-    <meta property="og:url" content="https://yourdomain.com/consulting">
+    <meta property="og:title" content="Digital Consulting Services | Gabriel Cavazos">
+    <meta property="og:description" content="Expert digital strategy consulting to transform your online presence. Strategic guidance for businesses seeking digital excellence and measurable growth.">
+    <meta property="og:image" content="https://gcavazo1.github.io/personal_link_tree/assets/og-image.jpg">
+    <meta property="og:url" content="https://gcavazo1.github.io/personal_link_tree/consulting.html">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Gabriel Cavazos Development">
+    
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Digital Consulting Services | Gabriel Cavazos">
+    <meta name="twitter:description" content="Expert digital strategy consulting to transform your online presence. Strategic guidance for businesses seeking digital excellence.">
+    <meta name="twitter:image" content="https://gcavazo1.github.io/personal_link_tree/assets/og-image.jpg">
+    <meta name="twitter:creator" content="@gabrielcavazos">
+    
+    <!-- Schema.org structured data for consulting service page -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Digital Strategy Consulting",
+      "serviceType": "Digital Consulting",
+      "provider": {
+        "@type": "Person",
+        "name": "Gabriel Cavazos",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Laredo",
+          "addressRegion": "TX",
+          "addressCountry": "US"
+        }
+      },
+      "description": "Expert digital strategy consulting to transform your online presence with actionable recommendations and measurable growth strategies.",
+      "offers": {
+        "@type": "AggregateOffer",
+        "highPrice": "2500",
+        "lowPrice": "250",
+        "priceCurrency": "USD",
+        "offerCount": "3"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      },
+      "url": "https://gcavazo1.github.io/personal_link_tree/consulting.html"
+    }
+    </script>
+    
+    <!-- Schema.org structured data for breadcrumbs -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://gcavazo1.github.io/personal_link_tree/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Digital Consulting",
+          "item": "https://gcavazo1.github.io/personal_link_tree/consulting.html"
+        }
+      ]
+    }
+    </script>
 </head>
 <body class="consulting-page">
     <!-- Custom cursor -->
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+    <div class="custom-cursor" id="custom-cursor" aria-hidden="true"></div>
 
     <!-- Back Navigation -->
     <div class="back-nav">
         <a href="index.html" class="back-link">
-            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-left" aria-hidden="true"></i>
             <span>Back to Services</span>
         </a>
     </div>
 
     <!-- Shader Canvas for Scroll Effects -->
-    <canvas id="scroll-shader-canvas"></canvas>
+    <canvas id="scroll-shader-canvas" aria-label="Interactive background shader" role="img"></canvas>
 
     <div class="consulting-container">
         <header class="consulting-header">
@@ -66,7 +135,7 @@
             
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">✧</div>
+                    <div class="service-icon" aria-hidden="true">✧</div>
                     <div class="service-content">
                         <h3>Strategy Sessions</h3>
                         <p>One-on-one virtual consultations to define and refine your digital presence strategy</p>
@@ -75,7 +144,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-icon">◈</div>
+                    <div class="service-icon" aria-hidden="true">◈</div>
                     <div class="service-content">
                         <h3>Digital Audits & Roadmaps</h3>
                         <p>Comprehensive analysis of your digital footprint with actionable recommendations</p>
@@ -84,7 +153,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-icon">◎</div>
+                    <div class="service-icon" aria-hidden="true">◎</div>
                     <div class="service-content">
                         <h3>Conversion Optimization</h3>
                         <p>Expert review of your digital platforms to identify opportunities to increase conversions</p>
@@ -93,7 +162,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-icon">⟡</div>
+                    <div class="service-icon" aria-hidden="true">⟡</div>
                     <div class="service-content">
                         <h3>Technology Selection</h3>
                         <p>Expert guidance in choosing the right platforms, tools, and tech stack for your needs</p>

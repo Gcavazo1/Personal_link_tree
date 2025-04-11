@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Gabriel Cavazos</title>
-    <meta name="description" content="Get in touch with Gabriel Cavazos for premium web development, design services, and digital consulting.">
+    <title>Contact Gabriel Cavazos | Premium Web Development Services</title>
+    <meta name="description" content="Get in touch with Gabriel Cavazos for premium web development, UI/UX design services, and digital consulting. Based in Laredo, TX.">
+    <meta name="keywords" content="contact developer, hire web developer, Gabriel Cavazos, web development services, UI/UX design, digital consulting, Laredo">
+    <meta name="author" content="Gabriel Cavazos">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://gcavazo1.github.io/personal_link_tree/contact.html">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -22,11 +27,43 @@
     <link rel="stylesheet" href="contact-styles.css">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Contact Gabriel Cavazos">
-    <meta property="og:description" content="Get in touch for premium web development, design services, and digital consulting.">
-    <meta property="og:image" content="assets/og-image.jpg">
-    <meta property="og:url" content="https://your-website.com/contact.html">
+    <meta property="og:title" content="Contact Gabriel Cavazos | Premium Web Development Services">
+    <meta property="og:description" content="Get in touch for premium web development, UI/UX design services, and digital consulting. Based in Laredo, TX.">
+    <meta property="og:image" content="https://gcavazo1.github.io/personal_link_tree/assets/og-image.jpg">
+    <meta property="og:url" content="https://gcavazo1.github.io/personal_link_tree/contact.html">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Gabriel Cavazos Development">
+    
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact Gabriel Cavazos | Premium Web Development Services">
+    <meta name="twitter:description" content="Get in touch for premium web development, UI/UX design services, and digital consulting.">
+    <meta name="twitter:image" content="https://gcavazo1.github.io/personal_link_tree/assets/og-image.jpg">
+    <meta name="twitter:creator" content="@gabrielcavazos">
+    
+    <!-- Schema.org structured data for contact page -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact Gabriel Cavazos",
+      "description": "Get in touch with Gabriel Cavazos for premium web development, UI/UX design services, and digital consulting.",
+      "url": "https://gcavazo1.github.io/personal_link_tree/contact.html",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Gabriel Cavazos",
+        "email": "gcavazo1@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Laredo",
+          "addressRegion": "TX",
+          "addressCountry": "US"
+        },
+        "jobTitle": "Web Developer",
+        "url": "https://gcavazo1.github.io/personal_link_tree/"
+      }
+    }
+    </script>
     
     <!-- Google reCAPTCHA -->
     <!-- TODO: Re-implement reCAPTCHA after fixing integration issues -->
@@ -35,16 +72,16 @@
 
 <body class="contact-page">
     <!-- Custom cursor -->
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+    <div class="custom-cursor" id="custom-cursor" aria-hidden="true"></div>
     
     <!-- Shader Canvas for Background -->
-    <canvas id="contact-shader-canvas"></canvas>
+    <canvas id="contact-shader-canvas" aria-label="Interactive background shader" role="img"></canvas>
     
     <!-- Back Navigation -->
     <div class="back-nav">
         <a href="index.html" class="back-link">
-            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-left" aria-hidden="true"></i>
             <span>Back to Home</span>
         </a>
     </div>
@@ -72,7 +109,7 @@
                     <div class="contact-details">
                         <div class="contact-method">
                             <div class="method-icon">
-                                <i class="fas fa-envelope"></i>
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
                             </div>
                             <div class="method-info">
                                 <h3>Email</h3>
@@ -82,7 +119,7 @@
                         
                         <div class="contact-method">
                             <div class="method-icon">
-                                <i class="fas fa-map-marker-alt"></i>
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                             </div>
                             <div class="method-info">
                                 <h3>Location</h3>
@@ -92,7 +129,7 @@
                         
                         <div class="contact-method">
                             <div class="method-icon">
-                                <i class="fas fa-clock"></i>
+                                <i class="fas fa-clock" aria-hidden="true"></i>
                             </div>
                             <div class="method-info">
                                 <h3>Availability</h3>
@@ -104,17 +141,17 @@
                     <div class="social-connect">
                         <h3 class="social-title">Connect With Me</h3>
                         <div class="social-links">
-                            <a href="https://www.facebook.com/gabriel.cavazos.5473/" target="_blank" rel="noopener noreferrer" class="social-link">
-                                <i class="fab fa-facebook-f"></i>
+                            <a href="https://www.facebook.com/gabriel.cavazos.5473/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+                                <i class="fab fa-facebook-f" aria-hidden="true"></i>
                             </a>
-                            <a href="https://www.instagram.com/gabrielzosavac/" target="_blank" rel="noopener noreferrer" class="social-link">
-                                <i class="fab fa-instagram"></i>
+                            <a href="https://www.instagram.com/gabrielzosavac/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
                             </a>
-                            <a href="https://github.com/Gcavazo1" target="_blank" rel="noopener noreferrer" class="social-link">
-                                <i class="fab fa-github"></i>
+                            <a href="https://github.com/Gcavazo1" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                                <i class="fab fa-github" aria-hidden="true"></i>
                             </a>
-                            <a href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="social-link">
-                                <i class="fab fa-linkedin-in"></i>
+                            <a href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
@@ -128,7 +165,9 @@
                                 style="border:0;"
                                 allowfullscreen=""
                                 loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade">
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Map of Laredo, Texas"
+                                aria-label="Google Maps showing Laredo, Texas location">
                             </iframe>
                             <div class="map-accent"></div>
                         </div>

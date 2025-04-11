@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Design Services | Personal Link Tree</title>
-    <meta name="description" content="Full-stack developer specializing in desktop apps, web development, and blockchain. Explore my portfolio featuring reNamerX, QuickToken Platform, and more.">
+    <title>Gabriel Cavazos | Premium Web Development & Design Services</title>
+    <meta name="description" content="Professional web developer specializing in premium web applications, desktop software, and blockchain solutions. Explore my portfolio featuring reNamerX, QuickToken Platform, and custom digital experiences.">
+    <meta name="keywords" content="web developer, software developer, full stack developer, premium web design, UI/UX, Gabriel Cavazos, custom applications, desktop apps, blockchain">
+    <meta name="author" content="Gabriel Cavazos">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://gcavazo1.github.io/personal_link_tree/">
     
     <!-- Preload Custom Fonts -->
     <link rel="preload" href="assets/fonts/RusticRoadway.otf" as="font" type="font/otf" crossorigin>
@@ -20,16 +25,81 @@
     <!-- Favicon -->
     <link rel="icon" href="assets/favicon_initials.png" type="image/png">
     <!-- Open Graph tags -->
-    <meta property="og:title" content="Premium Design Services | Personal Link Tree">
-    <meta property="og:description" content="Full-stack developer specializing in desktop apps, web development, and blockchain. Explore my portfolio featuring reNamerX, QuickToken Platform, and more.">
-    <meta property="og:image" content="og-image.jpg">
-    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:title" content="Gabriel Cavazos | Premium Web Development & Design Services">
+    <meta property="og:description" content="Professional web developer specializing in premium web applications, desktop software, and blockchain solutions. Explore my portfolio and services.">
+    <meta property="og:image" content="https://gcavazo1.github.io/personal_link_tree/assets/og-image.jpg">
+    <meta property="og:url" content="https://gcavazo1.github.io/personal_link_tree/">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Gabriel Cavazos Development">
     <!-- Twitter Card tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Premium Design Services | Personal Link Tree">
-    <meta name="twitter:description" content="Connect with my premium web design and development services. Elevate your digital presence with bespoke solutions.">
-    <meta name="twitter:image" content="og-image.jpg">
+    <meta name="twitter:title" content="Gabriel Cavazos | Premium Web Development & Design Services">
+    <meta name="twitter:description" content="Professional web developer specializing in premium web applications, desktop software, and blockchain solutions.">
+    <meta name="twitter:image" content="https://gcavazo1.github.io/personal_link_tree/assets/og-image.jpg">
+    <meta name="twitter:creator" content="@gabrielcavazos">
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Gabriel Cavazos",
+      "url": "https://gcavazo1.github.io/personal_link_tree/",
+      "image": "https://gcavazo1.github.io/personal_link_tree/assets/profilePicture.jpg",
+      "sameAs": [
+        "https://github.com/Gcavazo1",
+        "https://www.linkedin.com/in/yourusername",
+        "https://www.fiverr.com/s/6Y217ER"
+      ],
+      "jobTitle": "Web Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Gabriel Cavazos Development"
+      },
+      "knowsAbout": ["Web Development", "Desktop Applications", "Blockchain", "UI/UX Design", "Full Stack Development"]
+    }
+    </script>
+    
+    <!-- Professional services data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Gabriel Cavazos Development Services",
+      "image": "https://gcavazo1.github.io/personal_link_tree/assets/og-image.jpg",
+      "url": "https://gcavazo1.github.io/personal_link_tree/",
+      "telephone": "",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Laredo",
+        "addressRegion": "TX",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 27.5306,
+        "longitude": -99.4803
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      },
+      "sameAs": [
+        "https://github.com/Gcavazo1",
+        "https://www.linkedin.com/in/yourusername"
+      ],
+      "priceRange": "$$$"
+    }
+    </script>
+    
     <!-- Loader styles -->
     <style>
         .loader-container {
@@ -118,19 +188,19 @@
     </div>
 
     <!-- WebGL Background -->
-    <canvas id="shader-canvas"></canvas>
+    <canvas id="shader-canvas" aria-label="Interactive background shader" role="img"></canvas>
 
     <!-- Click Prompt -->
     <div class="click-prompt" id="click-prompt">
         <div class="click-prompt-text">Click Anywhere to Explore</div>
         <div class="click-prompt-icon">
-            <i class="fas fa-mouse"></i>
+            <i class="fas fa-mouse" aria-hidden="true"></i>
         </div>
     </div>
 
     <!-- Custom cursor -->
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+    <div class="custom-cursor" id="custom-cursor" aria-hidden="true"></div>
 
     <div class="page-wrapper">
         <!-- Header/Profile Section (Full Width) -->
@@ -163,9 +233,9 @@
             <div class="footer-content">
                 <p>&copy; <span id="current-year">2023</span> Gabriel Cavazos | All Rights Reserved</p>
                 <div class="social-links">
-                    <a href="https://github.com/Gcavazo1" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com/Gcavazo1" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                 </div>
             </div>
         </footer>
