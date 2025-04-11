@@ -18,13 +18,16 @@
 
 /* Global Styles */
 .contact-page {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Wasted Vindey', 'Inter', sans-serif;
     color: var(--contact-text-light);
     background-color: var(--contact-dark);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    overflow-y: auto;
     position: relative;
+    height: auto;
+    min-height: 100vh;
 }
 
 /* Cursor Styles */
@@ -99,13 +102,33 @@
     transform: translateY(-2px);
 }
 
+/* Custom Fonts for Contact Page */
+@font-face {
+    font-family: 'Rustic Roadway';
+    src: url('assets/fonts/RusticRoadway.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Wasted Vindey';
+    src: url('assets/fonts/Wasted-Vindey.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Container */
 .contact-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 30px;
+    padding: 0 30px 60px 30px; /* Add bottom padding */
     position: relative;
     z-index: 1;
+    height: auto;
+    min-height: calc(100vh - 100px); /* Account for padding */
+    overflow-y: visible; /* Ensure content overflows properly */
 }
 
 /* Header */
@@ -122,19 +145,19 @@
 }
 
 .contact-logo h1 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
     font-size: 2.5rem;
     font-weight: 500;
     color: var(--contact-light);
     margin: 0;
-    letter-spacing: 1px;
+    letter-spacing: 0.05em;
 }
 
 .tagline {
     font-size: 1rem;
     color: var(--contact-gold);
     font-weight: 400;
-    letter-spacing: 2px;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
     margin-top: 5px;
     opacity: 0.9;
@@ -163,7 +186,7 @@
 }
 
 .contact-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
     font-size: 3rem;
     font-weight: 600;
     color: var(--contact-light);
@@ -271,7 +294,7 @@
 }
 
 .social-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
     font-size: 1.8rem;
     font-weight: 600;
     color: var(--contact-light);
@@ -346,7 +369,7 @@
 }
 
 .form-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
     font-size: 3rem;
     font-weight: 600;
     color: var(--contact-light);
@@ -444,6 +467,7 @@
     background-color: rgba(35, 35, 35, 0.9);
 }
 
+/* TODO: Re-enable these styles when reCAPTCHA is re-implemented
 .captcha-container {
     margin: 10px 0;
     display: flex;
@@ -478,6 +502,7 @@
         margin-left: -15px;
     }
 }
+*/
 
 .privacy-notice {
     font-size: 0.85rem;
@@ -586,7 +611,7 @@
 }
 
 .footer-logo h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
     font-size: 1.8rem;
     font-weight: 500;
     margin: 0 0 5px;
@@ -768,7 +793,7 @@
 }
 
 .message-box h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 15px;
@@ -826,4 +851,19 @@
     .message-box p {
         font-size: 1rem;
     }
+}
+
+/* Typography */
+.tagline,
+.contact-message,
+.method-info p,
+.method-info a,
+.footer-logo p,
+.footer-links a,
+.copyright,
+.form-group label,
+.privacy-notice,
+.captcha-note {
+    font-family: 'Wasted Vindey', 'Inter', sans-serif;
+    letter-spacing: 0.02em;
 } 

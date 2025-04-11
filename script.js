@@ -1,6 +1,30 @@
 // Link data - customize with your own links
 const links = [
     {
+        title: "reNamerX",
+        url: "https://re-namer-x.vercel.app/",
+        icon: "📂",
+        description: "Powerful desktop batch file renaming application"
+    },
+    {
+        title: "QuickToken Platform",
+        url: "https://quick-token-platform.vercel.app/",
+        icon: "🪙",
+        description: "ERC-20 smart contract deployment platform with integrated DApp"
+    },
+    {
+        title: "Tauri Security Boilerplate",
+        url: "https://gcavazo1.github.io/tauri-security-boilerplate/",
+        icon: "🔐",
+        description: "Enterprise-ready security template for Tauri 2.0 desktop apps"
+    },
+    {
+        title: "Neon Rush Game",
+        url: "https://neon-rush-game.vercel.app/",
+        icon: "🎮",
+        description: "Web-based infinite scroller game with cyberpunk aesthetics"
+    },
+    {
         title: "Norma's Creations",
         url: "https://normascreations-landing.vercel.app/",
         icon: "🎀",
@@ -18,6 +42,22 @@ const links = [
         icon: "🌙",
         description: "Creative digital experiences for pet enthusiasts"
     },
+    // Services start here
+    {
+        title: "Development Services",
+        url: "#",
+        icon: "💻",
+        description: "Custom web development for discerning businesses",
+        featured: true,
+        modal: true
+    },
+    {
+        title: "Digital Consulting",
+        url: "/consulting.html",
+        icon: "📊",
+        description: "Strategic digital presence consulting for businesses",
+        featured: true
+    },
     {
         title: "Fiverr Profile",
         url: "https://www.fiverr.com/s/6Y217ER",
@@ -27,39 +67,20 @@ const links = [
     {
         title: "Dev Portfolio",
         url: "https://gcavazo1.github.io/GigaCode_Dev_Showcase_Website/",
-        icon: "🚀",
-        description: "Explore my complete development portfolio and showcase"
+        icon: "🔍",
+        description: "View my professional development portfolio"
     },
     {
         title: "GitHub",
         url: "https://github.com/Gcavazo1",
-        icon: "⟡",
+        icon: "♦️",
         description: "Check out my open source projects and contributions"
     },
     {
-        title: "Development Services",
-        url: "#services-modal",
-        icon: "◈",
-        description: "Custom web development for discerning businesses",
-        modal: true
-    },
-    {
-        title: "Client Showcase",
-        url: "#",
-        icon: "✧",
-        description: "Success stories and testimonials from select clients"
-    },
-    {
-        title: "Digital Consulting",
-        url: "consulting.html",
-        icon: "◎",
-        description: "Strategic digital presence consulting for businesses"
-    },
-    {
         title: "Contact",
-        url: "contact.html",
-        icon: "✉",
-        description: "Get in touch for premium digital services"
+        url: "/contact.html",
+        icon: "✉️",
+        description: "Get in touch for project inquiries and collaborations"
     }
 ];
 
@@ -83,19 +104,19 @@ const testimonials = [
         quote: "Working with this designer was transformative for our brand. The attention to detail and premium aesthetic elevated our digital presence beyond expectations.",
         author: "Sarah Johnson",
         company: "Luxury Interiors Co.",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+        image: "https://randomuser.me/api/portraits/women/44.jpg"
     },
     {
         quote: "The level of sophistication and technical excellence delivered was exceptional. Our conversion rates have increased by 40% since the redesign.",
         author: "Michael Chen",
         company: "Prestige Ventures",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+        image: "https://randomuser.me/api/portraits/men/32.jpg"
     },
     {
         quote: "A true artisan of digital design. The custom animations and attention to brand positioning created a website that perfectly captures our premium offering.",
         author: "Elizabeth Taylor",
         company: "Elite Boutique",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+        image: "https://randomuser.me/api/portraits/women/65.jpg"
     }
 ];
 
@@ -363,6 +384,12 @@ function createLinkSection(title, sectionLinks, parentContainer, sectionIndex) {
         linkItem.href = link.url;
         linkItem.className = 'link-item';
         
+        // Add featured class if the link is featured
+        if (link.featured) {
+            linkItem.classList.add('featured');
+            link.extraClasses = 'featured';
+        }
+        
         // If link is modal, add modal trigger functionality
         if (link.modal) {
             linkItem.addEventListener('click', function(e) {
@@ -396,6 +423,14 @@ function createLinkSection(title, sectionLinks, parentContainer, sectionIndex) {
         arrow.className = 'link-arrow';
         arrow.innerHTML = '→';
         
+        // Add featured star indicator if it's a featured link
+        if (link.featured) {
+            const featuredStar = document.createElement('div');
+            featuredStar.className = 'featured-star';
+            featuredStar.innerHTML = '★';
+            linkItem.appendChild(featuredStar);
+        }
+        
         textContainer.appendChild(title);
         textContainer.appendChild(description);
         
@@ -408,41 +443,75 @@ function createLinkSection(title, sectionLinks, parentContainer, sectionIndex) {
         // Enhanced hover effects for premium feel
         const hoverTimeline = gsap.timeline({ paused: true });
         
-        hoverTimeline
-            .to(linkItem, { 
-                y: -5, 
-                scale: 1.01, 
-                boxShadow: '0 15px 40px rgba(0, 0, 0, 0.2), 0 0 15px rgba(212, 184, 121, 0.1)',
-                borderColor: 'rgba(212, 184, 121, 0.15)',
-                background: 'linear-gradient(180deg, rgba(19, 27, 46, 0.85), rgba(10, 15, 28, 0.95))',
-                duration: 0.5, 
-                ease: "power2.out" 
-            }, 0)
-            .to(icon, { 
-                scale: 1.15, 
-                rotation: 5,
-                backgroundColor: 'rgba(212, 184, 121, 0.15)',
-                boxShadow: '0 5px 15px rgba(0, 0, 0, 0.1)', 
-                duration: 0.5, 
-                ease: "back.out(1.5)" 
-            }, 0)
-            .to(arrow, { 
-                x: 3,
-                opacity: 1, 
-                color: 'var(--accent)',
-                duration: 0.4, 
-                ease: "power3.out" 
-            }, 0)
-            .to(description, { 
-                color: 'var(--text-primary)', 
-                duration: 0.5, 
-                ease: "power2.out" 
-            }, 0)
-            .to(title, { 
-                color: 'var(--text-highlight)', 
-                duration: 0.5, 
-                ease: "power2.out" 
-            }, 0);
+        // Different hover animations for featured items
+        if (link.featured) {
+            hoverTimeline
+                .to(linkItem, { 
+                    y: -5, 
+                    scale: 1.02, 
+                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.2), 0 0 30px rgba(212, 184, 121, 0.2), 0 0 5px rgba(65, 147, 221, 0.5)',
+                    borderColor: 'rgba(212, 184, 121, 0.5)',
+                    background: 'linear-gradient(145deg, rgba(212, 184, 121, 0.25), rgba(212, 184, 121, 0.15))',
+                    duration: 0.5, 
+                    ease: "power2.out" 
+                }, 0)
+                .to(icon, { 
+                    scale: 1.15, 
+                    rotation: 5,
+                    backgroundColor: 'rgba(212, 184, 121, 0.35)',
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15), 0 0 15px rgba(212, 184, 121, 0.4)', 
+                    duration: 0.5, 
+                    ease: "back.out(1.5)" 
+                }, 0)
+                .to(arrow, { 
+                    x: 5,
+                    opacity: 1, 
+                    color: 'var(--accent)',
+                    duration: 0.4, 
+                    ease: "power3.out" 
+                }, 0)
+                .to(title, { 
+                    textShadow: '0 0 20px rgba(212, 184, 121, 0.5)', 
+                    duration: 0.5, 
+                    ease: "power2.out" 
+                }, 0);
+        } else {
+            hoverTimeline
+                .to(linkItem, { 
+                    y: -5, 
+                    scale: 1.01, 
+                    boxShadow: '0 15px 40px rgba(0, 0, 0, 0.2), 0 0 15px rgba(212, 184, 121, 0.1)',
+                    borderColor: 'rgba(212, 184, 121, 0.15)',
+                    background: 'linear-gradient(180deg, rgba(19, 27, 46, 0.85), rgba(10, 15, 28, 0.95))',
+                    duration: 0.5, 
+                    ease: "power2.out" 
+                }, 0)
+                .to(icon, { 
+                    scale: 1.15, 
+                    rotation: 5,
+                    backgroundColor: 'rgba(212, 184, 121, 0.15)',
+                    boxShadow: '0 5px 15px rgba(0, 0, 0, 0.1)', 
+                    duration: 0.5, 
+                    ease: "back.out(1.5)" 
+                }, 0)
+                .to(arrow, { 
+                    x: 3,
+                    opacity: 1, 
+                    color: 'var(--accent)',
+                    duration: 0.4, 
+                    ease: "power3.out" 
+                }, 0)
+                .to(description, { 
+                    color: 'var(--text-primary)', 
+                    duration: 0.5, 
+                    ease: "power2.out" 
+                }, 0)
+                .to(title, { 
+                    color: 'var(--text-highlight)', 
+                    duration: 0.5, 
+                    ease: "power2.out" 
+                }, 0);
+        }
         
         linkItem.addEventListener('mouseenter', () => {
             hoverTimeline.play();
@@ -546,7 +615,7 @@ function generateTestimonials() {
         
         // Add section title
         const sectionTitle = document.createElement('div');
-        sectionTitle.className = 'section-title';
+        sectionTitle.className = 'section-header';
         sectionTitle.innerHTML = `
             <h2>Client Testimonials</h2>
             <div class="section-title-line"></div>
@@ -790,232 +859,786 @@ function handleMouseInteraction() {
     });
 }
 
-// Initialize when DOM is loaded
+// Initialize everything when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('[Debug] DOM fully loaded and parsed');
+    console.log('[Debug] DOM fully loaded');
     
-    setupAnimations();
-    ensureProfileSection();
-    generateLinks();
-    generatePortfolioSection();
-    generateServiceCategories();
-    generateTestimonials();
-    
-    // Initialize shaders for welcome screen
-    if (typeof initShaders === 'function') {
-        initShaders();
-    }
-    
-    // Initialize custom cursor
+    // Set up custom cursor
     initCustomCursor();
     
-    // Add click events for canvas
-    const canvas = document.getElementById('shader-canvas');
-    if (canvas) {
-        canvas.addEventListener('click', handleCanvasClick);
-        console.log('[Debug] Canvas click event listener added');
-    }
+    // Initialize WebGL shader
+    initWebGLShader();
     
-    // Add document click handler as fallback
-    document.addEventListener('click', function(e) {
-        if (e.target.id === 'shader-canvas') return;
-        if (!document.body.classList.contains('content-visible')) {
-            console.log('[Debug] Document click handler triggered content visibility');
-            handleCanvasClick(e);
-        }
-    });
+    // Set up two-column layout
+    setupTwoColumnLayout();
     
-    // Add a keyboard event listener for accessibility
-    document.addEventListener('keydown', function(e) {
-        if ((e.key === ' ' || e.key === 'Enter') && !document.body.classList.contains('content-visible')) {
-            console.log('[Debug] Key press detected, revealing content');
-            handleCanvasClick(new MouseEvent('click'));
-        }
-    });
+    // Initialize animations and other features
+    setupAnimations();
     
-    // Initialize mouse/touch interaction for shaders
-    if (typeof handleMouseInteraction === 'function') {
-        handleMouseInteraction();
-    }
-    
-    // Update copyright year
-    const yearElement = document.getElementById('current-year');
-    if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
-    }
-    
-    // Initialize services modal
+    // Set up services modal
     setupServicesModal();
+    
+    // Wait for user click to reveal content
+    setupRevealOnClick();
+    
+    // Track mouse movement for the shader effects
+    document.addEventListener('mousemove', function(e) {
+        if (typeof window.updateShaderMouse === 'function') {
+            const x = e.clientX / window.innerWidth;
+            const y = 1.0 - e.clientY / window.innerHeight;
+            window.updateShaderMouse(x, y);
+        }
+    });
 });
 
-// Ensure all sections are visible after the page is loaded
-function ensureContentVisible() {
-    console.log('[Debug] Running ensureContentVisible');
+// Initialize WebGL shader
+function initWebGLShader() {
+    console.log('[Debug] Initializing WebGL shader');
     
-    // Force content container to be visible
-    const content = document.querySelector('.content');
-    if (content) {
-        console.log('[Debug] Setting content container styles');
-        content.style.opacity = '1';
-        content.style.visibility = 'visible';
-        content.style.transform = 'translateY(0)';
-        content.style.pointerEvents = 'all';
-    } else {
-        console.error('[Debug] Content container not found in ensureContentVisible');
+    const canvas = document.getElementById('shader-canvas');
+    if (!canvas) {
+        console.error('[Error] Shader canvas not found');
+        return;
     }
     
-    // Force sections to be visible
-    const allSections = document.querySelectorAll('.section, .testimonials-section, .footer, .link-item');
-    console.log(`[Debug] Found ${allSections.length} sections to make visible`);
-    allSections.forEach(section => {
-        section.style.opacity = '1';
-        section.style.visibility = 'visible';
-        section.style.transform = 'translateY(0)';
+    // Initialize shader - detailed implementation is in shaders.js
+    if (typeof initShader === 'function') {
+        initShader(canvas);
+    } else {
+        console.error('[Error] Shader initialization function not found');
+    }
+}
+
+// Set up click to reveal content
+function setupRevealOnClick() {
+    console.log('[Debug] Setting up reveal on click');
+    
+    const pageWrapper = document.querySelector('.page-wrapper');
+    const clickPrompt = document.getElementById('click-prompt');
+    
+    if (!pageWrapper || !clickPrompt) {
+        console.error('[Error] Page wrapper or click prompt not found');
+        return;
+    }
+    
+    // The actual click handler is now in index.html
+    // This function only sets up the initial state
+    pageWrapper.style.opacity = '0';
+    clickPrompt.classList.remove('hidden');
+    
+    // Track mouse movement for the shader
+    document.addEventListener('mousemove', function(e) {
+        if (typeof window.updateShaderMouse === 'function') {
+            const x = e.clientX / window.innerWidth;
+            const y = 1.0 - e.clientY / window.innerHeight; // Invert Y for shader coordinates
+            window.updateShaderMouse(x, y);
+        }
+    });
+}
+
+// Set up the two-column layout
+function setupTwoColumnLayout() {
+    console.log('[Debug] Setting up two-column layout');
+    
+    // Generate profile section (full width)
+    generateProfile();
+    
+    // Get column content containers
+    const leftColumn = document.getElementById('left-column-content');
+    const rightColumn = document.getElementById('right-column-content');
+    
+    if (!leftColumn || !rightColumn) {
+        console.error('[Debug] Column containers not found');
+        return;
+    }
+    
+    // LEFT COLUMN: Creative Builds Section
+    const creativeBuildsLinks = links.slice(0, 7); // First 7 links are creative builds
+    createLinkSection('CREATIVE BUILDS', creativeBuildsLinks, leftColumn, 0);
+    
+    // RIGHT COLUMN: Services Section
+    const serviceLinks = [
+        // Featured services at the top
+        links.find(link => link.title === "Development Services"),
+        links.find(link => link.title === "Digital Consulting"),
+        // Other services
+        links.find(link => link.title === "Dev Portfolio"),
+        links.find(link => link.title === "GitHub"),
+        links.find(link => link.title === "Contact")
+    ].filter(Boolean); // Filter out any undefined items
+    
+    createLinkSection('SERVICES', serviceLinks, rightColumn, 0);
+    
+    // RIGHT COLUMN: Marketplaces Section (NEW)
+    const marketplacesLinks = [
+        links.find(link => link.title === "Fiverr Profile"),
+        {
+            title: "Gumroad",
+            url: "https://gumroad.com",
+            icon: "🛒",
+            description: "Digital products and premium design resources"
+        },
+        {
+            title: "Envato Market",
+            url: "https://codecanyon.net",
+            icon: "🧩",
+            description: "Premium templates and code components"
+        },
+        {
+            title: "Creative Market",
+            url: "https://creativemarket.com",
+            icon: "🎨",
+            description: "Design assets and creative resources"
+        },
+        {
+            title: "Lemon Squeezy",
+            url: "https://lemonsqueezy.com",
+            icon: "🍋",
+            description: "Digital products and SaaS solutions"
+        }
+    ].filter(Boolean);
+    
+    createLinkSection('MARKETPLACES', marketplacesLinks, rightColumn, 1);
+    
+    // LEFT COLUMN: Portfolio Section
+    generatePortfolioSection(leftColumn);
+    
+    // RIGHT COLUMN: Testimonials Section
+    generateTestimonialsSection(rightColumn);
+}
+
+// Generate the profile section
+function generateProfile() {
+    console.log('[Debug] Generating profile section');
+    
+    const profileHeader = document.querySelector('.profile-header');
+    if (!profileHeader) return;
+    
+    const profile = document.createElement('div');
+    profile.className = 'profile';
+    profileHeader.appendChild(profile);
+    
+    profile.innerHTML = `
+        <div class="profile-image-container">
+            <div class="profile-image">
+                <img src="assets/profilePicture.jpg" alt="Gabriel Cavazos">
+            </div>
+            <div class="profile-image-backdrop"></div>
+        </div>
+        <div class="status-badge">
+            <i class="fas fa-circle" style="font-size: 0.6rem; margin-right: 5px; color: #00ff7b;"></i>
+            Available for Work
+        </div>
+        <h1 class="profile-name">Gabriel Cavazos</h1>
+        <p class="profile-bio">Premium Web Design & Development Services</p>
+        <div class="profile-tagline">GigaCode: Crafting digital experiences that elevate your brand</div>
+    `;
+    
+    // Add animations
+    profile.setAttribute('data-aos', 'fade-up');
+    
+    // Add parallax effect to profile elements
+    addProfileParallaxEffect();
+}
+
+// Add parallax effect to profile elements
+function addProfileParallaxEffect() {
+    const profileImage = document.querySelector('.profile-image');
+    const profileBackdrop = document.querySelector('.profile-image-backdrop');
+    
+    if (profileImage && profileBackdrop) {
+        // Add subtle glow to profile image on hover
+        profileImage.addEventListener('mouseenter', () => {
+            gsap.to(profileBackdrop, {
+                width: '200px',
+                height: '200px',
+                opacity: 0.8,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+        });
+        
+        profileImage.addEventListener('mouseleave', () => {
+            gsap.to(profileBackdrop, {
+                width: '180px',
+                height: '180px',
+                opacity: 1,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+        });
+    }
+}
+
+// Generate left column content (Creative Builds and Portfolio)
+function generateLeftColumnContent() {
+    console.log('[Debug] Generating left column content');
+    
+    const leftColumnContent = document.getElementById('left-column-content');
+    if (!leftColumnContent) return;
+    
+    // Generate Creative Builds section
+    generateCreativeBuildsSection(leftColumnContent);
+    
+    // Generate Portfolio section
+    generatePortfolioSection(leftColumnContent);
+}
+
+// Generate right column content (Services, Marketplaces, Testimonials)
+function generateRightColumnContent() {
+    console.log('[Debug] Generating right column content');
+    
+    const rightColumnContent = document.getElementById('right-column-content');
+    if (!rightColumnContent) return;
+    
+    // Generate Services section
+    generateServicesSection(rightColumnContent);
+    
+    // Generate Marketplaces section (new)
+    generateMarketplacesSection(rightColumnContent);
+    
+    // Generate Testimonials section
+    generateTestimonialsSection(rightColumnContent);
+}
+
+// Generate Creative Builds section
+function generateCreativeBuildsSection(parentContainer) {
+    console.log('[Debug] Generating Creative Builds section');
+    
+    // Creative Builds data
+    const creativeBuilds = [
+        {
+            title: "reNamerX",
+            url: "https://re-namer-x.vercel.app/",
+            icon: "📂",
+            description: "Powerful desktop batch file renaming application"
+        },
+        {
+            title: "QuickToken Platform",
+            url: "https://quick-token-platform.vercel.app/",
+            icon: "🪙",
+            description: "ERC-20 smart contract deployment platform with integrated DApp"
+        },
+        {
+            title: "Tauri Security Boilerplate",
+            url: "https://gcavazo1.github.io/tauri-security-boilerplate/",
+            icon: "🔐",
+            description: "Enterprise-ready security template for Tauri 2.0 desktop apps"
+        },
+        {
+            title: "Neon Rush Game",
+            url: "https://neon-rush-game.vercel.app/",
+            icon: "🎮",
+            description: "Web-based infinite scroller game with cyberpunk aesthetics"
+        },
+        {
+            title: "Norma's Creations",
+            url: "https://normascreations-landing.vercel.app/",
+            icon: "🎀",
+            description: "Handcrafted premium wreaths and seasonal decorations"
+        },
+        {
+            title: "CogniCube AI",
+            url: "https://cognicube-landing.vercel.app/",
+            icon: "🧠",
+            description: "Advanced AI solutions for enterprise applications"
+        },
+        {
+            title: "MoonPups",
+            url: "https://moonpups-landing.vercel.app/",
+            icon: "🌙",
+            description: "Creative digital experiences for pet enthusiasts"
+        }
+    ];
+    
+    // Create section
+    const section = document.createElement('div');
+    section.className = 'section creative-builds-section';
+    section.setAttribute('data-aos', 'fade-up');
+    
+    // Create section header
+    const sectionHeader = document.createElement('div');
+    sectionHeader.className = 'section-header';
+    sectionHeader.innerHTML = `
+        <h2 class="section-title">CREATIVE BUILDS</h2>
+        <div class="section-divider"></div>
+    `;
+    section.appendChild(sectionHeader);
+    
+    // Create links container
+    const linksContainer = document.createElement('div');
+    linksContainer.className = 'links-container';
+    section.appendChild(linksContainer);
+    
+    // Add links to container
+    creativeBuilds.forEach((link, index) => {
+        const linkItem = createLinkItem(link, index);
+        linksContainer.appendChild(linkItem);
     });
     
-    // Make sure body has content-visible class
-    if (!document.body.classList.contains('content-visible')) {
-        console.log('[Debug] Adding content-visible class to body');
-        document.body.classList.add('content-visible');
-    }
-    
-    // Refresh AOS
-    if (typeof AOS !== 'undefined') {
-        console.log('[Debug] Final AOS refresh');
-        AOS.refresh();
-    }
+    // Add to parent container
+    parentContainer.appendChild(section);
 }
 
-// Handle canvas click for the click-to-explore functionality
-function handleCanvasClick(e) {
-    console.log('[Debug] Canvas clicked - Starting content reveal process');
+// Generate Services section
+function generateServicesSection(parentContainer) {
+    console.log('[Debug] Generating Services section');
     
-    // Only trigger if content is not already visible
-    if (!document.body.classList.contains('content-visible')) {
-        console.log('[Debug] Content not yet visible, proceeding with reveal');
-        
-        // Force content to be visible immediately
-        document.body.classList.add('content-visible');
-        console.log('[Debug] Added content-visible class to body');
-        
-        // Hide click prompt with animation
-        const clickPrompt = document.querySelector('.click-prompt');
-        if (clickPrompt) {
-            gsap.to(clickPrompt, {
-                opacity: 0,
-                visibility: 'hidden',
-                duration: 0.5,
-                ease: "power2.out",
-                onComplete: () => {
-                    clickPrompt.style.display = 'none';
-                    console.log('[Debug] Click prompt hidden');
-                }
-            });
+    // Services data
+    const services = [
+        {
+            title: "Development Services",
+            url: "#",
+            icon: "💻",
+            description: "Custom web development for discerning businesses",
+            featured: true,
+            modal: true
+        },
+        {
+            title: "Digital Consulting",
+            url: "/consulting.html",
+            icon: "📊",
+            description: "Strategic digital presence consulting for businesses",
+            featured: true
+        },
+        {
+            title: "Dev Portfolio",
+            url: "https://gcavazo1.github.io/GigaCode_Dev_Showcase_Website/",
+            icon: "🔍",
+            description: "View my professional development portfolio"
+        },
+        {
+            title: "GitHub",
+            url: "https://github.com/Gcavazo1",
+            icon: "♦️",
+            description: "Check out my open source projects and contributions"
+        },
+        {
+            title: "Contact",
+            url: "/contact.html",
+            icon: "✉️",
+            description: "Get in touch for project inquiries and collaborations"
         }
-        
-        // Create profile section first
-        console.log('[Debug] Ensuring profile section exists');
-        ensureProfileSection();
-        
-        // Generate other content
-        console.log('[Debug] Starting content generation');
-        generateLinks();
-        console.log('[Debug] Links generated');
-        generateServiceCategories();
-        console.log('[Debug] Service categories generated');
-        generateTestimonials();
-        console.log('[Debug] Testimonials generated');
-        
-        // Force content to be visible
-        const content = document.querySelector('.content');
-        if (content) {
-            console.log('[Debug] Making content visible');
-            content.style.opacity = '1';
-            content.style.visibility = 'visible';
-            content.style.transform = 'translateY(0)';
-            content.style.pointerEvents = 'all';
-        } else {
-            console.error('[Debug] Content container not found!');
-        }
-        
-        // Create footer if it doesn't exist
-        createFooter();
-        console.log('[Debug] Footer created');
-        
-        // Try to use shader reveal if available
-        if (typeof window.revealContent === 'function') {
-            try {
-                const x = (e.clientX / window.innerWidth) * 2 - 1;
-                const y = -(e.clientY / window.innerHeight) * 2 + 1;
-                console.log('[Debug] Calling revealContent with:', x, y);
-                window.revealContent(x, y);
-            } catch (error) {
-                console.error('[Debug] Error in revealContent:', error);
-            }
-        }
-        
-        // Ensure animations run
-        if (typeof setupAnimations === 'function') {
-            console.log('[Debug] Running setupAnimations');
-            setupAnimations();
-        }
-        
-        // Initialize AOS
-        if (typeof AOS !== 'undefined') {
-            console.log('[Debug] Refreshing AOS');
-            AOS.refresh();
-        }
-        
-        // Ensure all content is visible after a delay
-        setTimeout(() => {
-            console.log('[Debug] Running final visibility check');
-            ensureContentVisible();
-        }, 100);
-    }
+    ];
+    
+    // Create section
+    const section = document.createElement('div');
+    section.className = 'section services-section';
+    section.setAttribute('data-aos', 'fade-up');
+    
+    // Create section header
+    const sectionHeader = document.createElement('div');
+    sectionHeader.className = 'section-header';
+    sectionHeader.innerHTML = `
+        <h2 class="section-title">SERVICES</h2>
+        <div class="section-divider"></div>
+    `;
+    section.appendChild(sectionHeader);
+    
+    // Create links container
+    const linksContainer = document.createElement('div');
+    linksContainer.className = 'links-container';
+    section.appendChild(linksContainer);
+    
+    // Add links to container
+    services.forEach((link, index) => {
+        const linkItem = createLinkItem(link, index);
+        linksContainer.appendChild(linkItem);
+    });
+    
+    // Add to parent container
+    parentContainer.appendChild(section);
 }
 
-// Ensure profile section exists
-function ensureProfileSection() {
-    console.log('[Debug] Starting ensureProfileSection');
+// Generate new Marketplaces section
+function generateMarketplacesSection(parentContainer) {
+    console.log('[Debug] Generating Marketplaces section');
     
-    let profile = document.querySelector('.profile');
-    console.log('[Debug] Existing profile section found:', !!profile);
+    // Marketplaces data
+    const marketplaces = [
+        {
+            title: "Fiverr Profile",
+            url: "https://www.fiverr.com/s/6Y217ER",
+            icon: "⭐",
+            description: "Hire me for premium web development and design services"
+        },
+        {
+            title: "Gumroad",
+            url: "https://gumroad.com",
+            icon: "🛒",
+            description: "Digital products and premium design resources"
+        },
+        {
+            title: "Envato Market",
+            url: "https://codecanyon.net",
+            icon: "🧩",
+            description: "Premium templates and code components"
+        },
+        {
+            title: "Creative Market",
+            url: "https://creativemarket.com",
+            icon: "🎨",
+            description: "Design assets and creative resources"
+        },
+        {
+            title: "Lemon Squeezy",
+            url: "https://lemonsqueezy.com",
+            icon: "🍋",
+            description: "Digital products and SaaS solutions"
+        }
+    ];
     
-    if (!profile) {
-        console.log('[Debug] Creating new profile section');
-        profile = document.createElement('div');
-        profile.className = 'profile';
-        profile.setAttribute('data-aos', 'fade-up');
+    // Create section
+    const section = document.createElement('div');
+    section.className = 'section marketplaces-section';
+    section.setAttribute('data-aos', 'fade-up');
+    section.setAttribute('data-aos-delay', '100');
+    
+    // Create section header
+    const sectionHeader = document.createElement('div');
+    sectionHeader.className = 'section-header';
+    sectionHeader.innerHTML = `
+        <h2 class="section-title">MARKETPLACES</h2>
+        <div class="section-divider"></div>
+    `;
+    section.appendChild(sectionHeader);
+    
+    // Create links container
+    const linksContainer = document.createElement('div');
+    linksContainer.className = 'links-container';
+    section.appendChild(linksContainer);
+    
+    // Add links to container
+    marketplaces.forEach((link, index) => {
+        const linkItem = createLinkItem(link, index);
+        linksContainer.appendChild(linkItem);
+    });
+    
+    // Add to parent container
+    parentContainer.appendChild(section);
+}
+
+// Generate Testimonials section
+function generateTestimonialsSection(parentContainer) {
+    console.log('[Debug] Generating Testimonials section');
+    
+    // Create section
+    const section = document.createElement('div');
+    section.className = 'section testimonials-section';
+    section.setAttribute('data-aos', 'fade-up');
+    section.setAttribute('data-aos-delay', '200');
+    
+    // Create section header
+    const sectionHeader = document.createElement('div');
+    sectionHeader.className = 'section-header';
+    sectionHeader.innerHTML = `
+        <h2 class="section-title">CLIENT TESTIMONIALS</h2>
+        <div class="section-divider"></div>
+    `;
+    section.appendChild(sectionHeader);
+    
+    // Testimonials data
+    const testimonials = [
+        {
+            quote: "Working with this designer was transformative for our brand. The attention to detail and premium aesthetic elevated our digital presence beyond expectations.",
+            name: "Sarah Johnson",
+            company: "Luxury Interiors Co.",
+            image: "https://randomuser.me/api/portraits/women/44.jpg"
+        },
+        {
+            quote: "The level of sophistication and technical excellence delivered was exceptional. Our conversion rates have increased by 40% since the redesign.",
+            name: "Michael Chen",
+            company: "Prestige Ventures",
+            image: "https://randomuser.me/api/portraits/men/32.jpg"
+        },
+        {
+            quote: "A true artisan of digital design. The custom animations and attention to brand positioning created a website that perfectly captures our premium offering.",
+            name: "Elizabeth Taylor",
+            company: "Elite Boutique",
+            image: "https://randomuser.me/api/portraits/women/65.jpg"
+        }
+    ];
+    
+    // Create testimonials container
+    const testimonialsContainer = document.createElement('div');
+    testimonialsContainer.className = 'testimonials-container';
+    
+    // Add testimonials
+    testimonials.forEach((testimonial, index) => {
+        const testimonialCard = document.createElement('div');
+        testimonialCard.className = 'testimonial-card';
+        testimonialCard.setAttribute('data-aos', 'fade-up');
+        testimonialCard.setAttribute('data-aos-delay', `${index * 100}`);
         
-        profile.innerHTML = `
-            <div class="profile-image-container">
-                <div class="profile-image">
-                    <img src="assets/profilePicture.jpg" alt="Gabriel Cavazos" onerror="console.error('[Debug] Failed to load profile picture')">
+        testimonialCard.innerHTML = `
+            <div class="testimonial-quote">"${testimonial.quote}"</div>
+            <div class="testimonial-author">
+                <div class="testimonial-author-image">
+                    <img src="${testimonial.image}" alt="${testimonial.name}">
                 </div>
-                <div class="profile-image-backdrop"></div>
-                <div class="status-badge">Available for Work</div>
+                <div class="testimonial-author-info">
+                    <div class="testimonial-author-name">${testimonial.name}</div>
+                    <div class="testimonial-author-company">${testimonial.company}</div>
+                </div>
             </div>
-            <h1 class="profile-name">Gabriel Cavazos</h1>
-            <p class="profile-bio">Premium Web Design & Development Services</p>
-            <div class="profile-tagline">Gigacode: Crafting digital experiences that elevate your brand</div>
         `;
         
-        // Add to content container
-        const content = document.querySelector('.content');
-        if (content) {
-            content.insertBefore(profile, content.firstChild);
-            console.log('[Debug] Profile section added to content container');
-        } else {
-            console.error('[Debug] Content container not found!');
+        testimonialsContainer.appendChild(testimonialCard);
+    });
+    
+    section.appendChild(testimonialsContainer);
+    
+    // Add to parent container
+    parentContainer.appendChild(section);
+}
+
+// Generate Portfolio section with categories
+function generatePortfolioSection(parentContainer) {
+    console.log('[Debug] Generating portfolio section');
+    
+    // Create section
+    const section = document.createElement('div');
+    section.className = 'section portfolio-section';
+    section.setAttribute('data-aos', 'fade-up');
+    section.setAttribute('data-aos-delay', '100');
+    
+    // Create section header
+    const sectionHeader = document.createElement('div');
+    sectionHeader.className = 'section-header';
+    sectionHeader.innerHTML = `
+        <h2 class="section-title">PORTFOLIO HIGHLIGHTS</h2>
+        <div class="section-divider"></div>
+    `;
+    section.appendChild(sectionHeader);
+    
+    // Create category tabs
+    const categoryTabs = document.createElement('div');
+    categoryTabs.className = 'category-tabs';
+    categoryTabs.innerHTML = `
+        <button class="category-tab active" data-category="all">All Projects</button>
+        <button class="category-tab" data-category="app">Desktop Apps</button>
+        <button class="category-tab" data-category="web">Web Projects</button>
+        <button class="category-tab" data-category="blockchain">Blockchain</button>
+        <button class="category-tab" data-category="templates">Templates</button>
+    `;
+    section.appendChild(categoryTabs);
+    
+    const portfolioGrid = document.createElement('div');
+    portfolioGrid.className = 'portfolio-grid';
+    
+    // Portfolio items
+    const portfolioItems = [
+        {
+            title: "reNamerX",
+            description: "Cross-platform batch file renaming desktop application",
+            image: "assets/renamex-preview.jpg",
+            url: "https://re-namer-x.vercel.app/",
+            category: "app"
+        },
+        {
+            title: "QuickToken Platform",
+            description: "Full DApp with ERC-20 token deployment capabilities",
+            image: "assets/quicktoken-preview.jpg",
+            url: "https://quick-token-platform.vercel.app/",
+            category: "blockchain"
+        },
+        {
+            title: "Tauri Security Boilerplate",
+            description: "Enterprise-grade security template for Tauri desktop apps",
+            image: "assets/tauri-security-preview.jpg",
+            url: "https://gcavazo1.github.io/tauri-security-boilerplate/",
+            category: "templates"
+        },
+        {
+            title: "Neon Rush Game",
+            description: "Infinite scroller game with cyberpunk aesthetics",
+            image: "assets/neon-rush-preview.jpg",
+            url: "https://neon-rush-game.vercel.app/",
+            category: "web"
+        },
+        {
+            title: "Norma's Creations",
+            description: "Premium handcrafted wreaths and seasonal decorations",
+            image: "assets/normas-creations-preview.jpg",
+            url: "https://normascreations-landing.vercel.app/",
+            category: "web"
+        },
+        {
+            title: "CogniCube AI",
+            description: "Enterprise AI solution with advanced analytics dashboard",
+            image: "assets/cognicube-preview.jpg",
+            url: "https://cognicube-landing.vercel.app/",
+            category: "web"
+        },
+        {
+            title: "MoonPups",
+            description: "Creative digital platform for pet enthusiasts",
+            image: "assets/moonpups-preview.jpg",
+            url: "https://moonpups-landing.vercel.app/",
+            category: "web"
         }
+    ];
+    
+    portfolioItems.forEach((item, index) => {
+        const portfolioItem = document.createElement('a');
+        portfolioItem.href = item.url;
+        portfolioItem.target = "_blank";
+        portfolioItem.className = 'portfolio-item';
+        portfolioItem.setAttribute('data-category', item.category);
+        portfolioItem.setAttribute('data-aos', 'fade-up');
+        portfolioItem.setAttribute('data-aos-delay', `${index * 100}`);
+        
+        portfolioItem.innerHTML = `
+            <div class="portfolio-image">
+                <img src="${item.image}" alt="${item.title}">
+                <div class="portfolio-overlay">
+                    <div class="portfolio-overlay-content">
+                        <div class="portfolio-category">${getCategoryLabel(item.category)}</div>
+                        <div class="view-project">View Project</div>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-details">
+                <h3 class="portfolio-title">${item.title}</h3>
+                <p class="portfolio-description">${item.description}</p>
+            </div>
+        `;
+        
+        portfolioGrid.appendChild(portfolioItem);
+    });
+    
+    section.appendChild(portfolioGrid);
+    
+    // Add to parent container
+    parentContainer.appendChild(section);
+    
+    // Add category filtering functionality
+    setupCategoryTabs();
+}
+
+// Helper function to create a link item
+function createLinkItem(link, index) {
+    const linkItem = document.createElement('a');
+    linkItem.href = link.url;
+    linkItem.className = 'link-item';
+    
+    // Add featured class if the link is featured
+    if (link.featured) {
+        linkItem.classList.add('featured');
     }
     
-    // Ensure profile is visible
-    if (profile) {
-        profile.style.opacity = '1';
-        profile.style.visibility = 'visible';
-        console.log('[Debug] Profile section visibility enforced');
+    // If link is modal, add modal trigger functionality
+    if (link.modal) {
+        linkItem.addEventListener('click', function(e) {
+            e.preventDefault();
+            openServicesModal();
+        });
+    } else {
+        linkItem.target = '_blank';
+        linkItem.rel = 'noopener noreferrer';
     }
+    
+    linkItem.setAttribute('data-aos', 'fade-up');
+    linkItem.setAttribute('data-aos-delay', `${index * 100}`);
+    
+    const icon = document.createElement('div');
+    icon.className = 'link-icon';
+    icon.innerHTML = link.icon;
+    
+    const textContainer = document.createElement('div');
+    textContainer.className = 'link-text';
+    
+    const title = document.createElement('div');
+    title.className = 'link-title';
+    title.textContent = link.title;
+    
+    const description = document.createElement('div');
+    description.className = 'link-description';
+    description.textContent = link.description;
+    
+    const arrow = document.createElement('div');
+    arrow.className = 'link-arrow';
+    arrow.innerHTML = '→';
+    
+    // Add featured star indicator if it's a featured link
+    if (link.featured) {
+        const featuredStar = document.createElement('div');
+        featuredStar.className = 'featured-star';
+        featuredStar.innerHTML = '★';
+        linkItem.appendChild(featuredStar);
+    }
+    
+    textContainer.appendChild(title);
+    textContainer.appendChild(description);
+    
+    linkItem.appendChild(icon);
+    linkItem.appendChild(textContainer);
+    linkItem.appendChild(arrow);
+    
+    // Add hover effects for premium feel
+    linkItem.addEventListener('mouseenter', function() {
+        this.classList.add('hover');
+    });
+    
+    linkItem.addEventListener('mouseleave', function() {
+        this.classList.remove('hover');
+    });
+    
+    return linkItem;
+}
+
+// Helper function to get readable category label
+function getCategoryLabel(category) {
+    const labels = {
+        'app': 'Desktop App',
+        'web': 'Web Project',
+        'blockchain': 'Blockchain',
+        'templates': 'Template'
+    };
+    return labels[category] || 'Project';
+}
+
+// Setup category tabs functionality
+function setupCategoryTabs() {
+    console.log('[Debug] Setting up category tabs');
+    
+    const tabs = document.querySelectorAll('.category-tab');
+    if (!tabs.length) return;
+    
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    if (!portfolioItems.length) return;
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Update active tab
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            const category = tab.getAttribute('data-category');
+            
+            // Filter portfolio items
+            portfolioItems.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    gsap.to(item, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out", display: 'block' });
+                } else {
+                    gsap.to(item, { opacity: 0, scale: 0.95, duration: 0.4, ease: "power2.out", display: 'none' });
+                }
+            });
+        });
+    });
+}
+
+// Setup animations
+function setupAnimations() {
+    console.log('[Debug] Setting up animations');
+    
+    // Initialize AOS animations
+    AOS.init({
+        duration: 800,
+        easing: 'ease-out',
+        once: true,
+        offset: 50
+    });
 }
 
 // Services Modal Functions
@@ -1384,105 +2007,4 @@ function closeServicesModal() {
     document.body.style.overflow = '';
     
     console.log('[Debug] Services modal closed');
-}
-
-// Generate Portfolio Section
-function generatePortfolioSection() {
-    console.log('[Debug] Generating portfolio section');
-    
-    // Find or create portfolio section
-    let portfolioSection = document.querySelector('.portfolio-section');
-    if (portfolioSection) {
-        console.log('[Debug] Portfolio section already exists, clearing it');
-        portfolioSection.innerHTML = '';
-    } else {
-        console.log('[Debug] Creating new portfolio section');
-        portfolioSection = document.createElement('div');
-        portfolioSection.className = 'section portfolio-section';
-        portfolioSection.setAttribute('data-aos', 'fade-up');
-    }
-    
-    // Create section header
-    const sectionHeader = document.createElement('div');
-    sectionHeader.className = 'section-header';
-    sectionHeader.innerHTML = `
-        <h2 class="section-title">Portfolio Highlights</h2>
-        <div class="section-divider"></div>
-    `;
-    portfolioSection.appendChild(sectionHeader);
-    
-    const portfolioGrid = document.createElement('div');
-    portfolioGrid.className = 'portfolio-grid';
-    
-    // Portfolio items
-    const portfolioItems = [
-        {
-            title: "Norma's Creations",
-            description: "Premium handcrafted wreaths and seasonal decorations",
-            image: "https://placehold.co/600x350/0a1525/4facfe?text=Norma's+Creations", // Placeholder until real image is added
-            url: "https://normascreations-landing.vercel.app/"
-        },
-        {
-            title: "CogniCube AI",
-            description: "Enterprise AI solution with advanced analytics dashboard",
-            image: "https://placehold.co/600x350/0a1525/4facfe?text=CogniCube+AI", // Placeholder until real image is added
-            url: "https://cognicube-landing.vercel.app/"
-        },
-        {
-            title: "MoonPups",
-            description: "Creative digital platform for pet enthusiasts",
-            image: "https://placehold.co/600x350/0a1525/4facfe?text=MoonPups", // Placeholder until real image is added
-            url: "https://moonpups-landing.vercel.app/"
-        }
-    ];
-    
-    portfolioItems.forEach((item, index) => {
-        const portfolioItem = document.createElement('a');
-        portfolioItem.href = item.url;
-        portfolioItem.target = "_blank";
-        portfolioItem.className = 'portfolio-item';
-        portfolioItem.setAttribute('data-aos', 'fade-up');
-        portfolioItem.setAttribute('data-aos-delay', `${index * 100}`);
-        
-        portfolioItem.innerHTML = `
-            <div class="portfolio-image">
-                <img src="${item.image}" alt="${item.title}">
-                <div class="portfolio-overlay">
-                    <div class="portfolio-overlay-content">
-                        <div class="view-project">View Project</div>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-details">
-                <h3 class="portfolio-title">${item.title}</h3>
-                <p class="portfolio-description">${item.description}</p>
-            </div>
-        `;
-        
-        portfolioGrid.appendChild(portfolioItem);
-    });
-    
-    portfolioSection.appendChild(portfolioGrid);
-    
-    // Add to content in the right position
-    const content = document.querySelector('.content');
-    if (content) {
-        // Find all link sections
-        const linkSections = document.querySelectorAll('.links-section');
-        
-        if (linkSections.length > 0) {
-            // Get the last link section
-            const lastLinkSection = linkSections[linkSections.length - 1];
-            
-            // Insert portfolio after the last link section
-            if (lastLinkSection.nextSibling) {
-                content.insertBefore(portfolioSection, lastLinkSection.nextSibling);
-            } else {
-                content.appendChild(portfolioSection);
-            }
-        } else {
-            // If no link sections exist, append to content
-            content.appendChild(portfolioSection);
-        }
-    }
 } 

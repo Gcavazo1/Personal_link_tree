@@ -1,6 +1,10 @@
 // Contact Page JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Ensure body is scrollable
+    document.body.style.overflow = 'auto';
+    document.documentElement.style.overflow = 'auto';
+    
     // Initialize components
     setupShaderBackground();
     setupFormValidation();
@@ -442,7 +446,9 @@ function setupFormValidation() {
             errorMessages.push('Please enter your message');
         }
         
-        // Verify CAPTCHA
+        // TODO: Re-implement reCAPTCHA verification when integration is fixed
+        // Verify CAPTCHA - temporarily disabled
+        /*
         const recaptchaResponse = grecaptcha.getResponse();
         if (recaptchaResponse.length === 0) {
             isValid = false;
@@ -450,11 +456,13 @@ function setupFormValidation() {
             showErrorMessage('Please complete the CAPTCHA verification to submit the form.');
             return;
         }
+        */
         
         // Handle validation result
         if (isValid) {
+            // TODO: Re-add reCAPTCHA token when re-implemented
             // Add reCAPTCHA token to the data
-            data['g-recaptcha-response'] = recaptchaResponse;
+            // data['g-recaptcha-response'] = recaptchaResponse;
             
             // Submit form
             submitForm(data);
@@ -517,7 +525,8 @@ function submitForm(data) {
             // Show success message
             showSuccessMessage(result.message);
             document.getElementById('contact-form').reset();
-            grecaptcha.reset(); // Reset the CAPTCHA
+            // TODO: Re-enable reCAPTCHA reset when re-implemented
+            // grecaptcha.reset(); // Reset the CAPTCHA
         } else {
             // Show error message
             showErrorMessage(result.message || 'Could not send your message. Please try again.');
@@ -539,7 +548,7 @@ function submitForm(data) {
         }
         // Display more user-friendly error message
         else if (errorMessage.includes('CAPTCHA')) {
-            showErrorMessage('CAPTCHA verification failed. Please refresh the page and try again.');
+            showErrorMessage('Server error occurred. Please try again later or contact us directly at gcavazo1@gmail.com.');
         } else {
             showErrorMessage('Error connecting to server. Please try again later or contact us directly at gcavazo1@gmail.com.');
         }

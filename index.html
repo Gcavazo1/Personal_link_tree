@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Design Services | Personal Link Tree</title>
-    <meta name="description" content="Connect with my premium web design and development services. Explore my portfolio featuring Norma's Creations, CogniCube AI and MoonPups projects.">
+    <meta name="description" content="Full-stack developer specializing in desktop apps, web development, and blockchain. Explore my portfolio featuring reNamerX, QuickToken Platform, and more.">
+    
+    <!-- Preload Custom Fonts -->
+    <link rel="preload" href="assets/fonts/RusticRoadway.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="assets/fonts/Wasted-Vindey.otf" as="font" type="font/otf" crossorigin>
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Contax Pro and Garamond Premier Pro fonts -->
+    <!-- Fallback Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" href="assets/favicon_initials.png" type="image/png">
     <!-- Open Graph tags -->
     <meta property="og:title" content="Premium Design Services | Personal Link Tree">
-    <meta property="og:description" content="Connect with my premium web design and development services. Explore my portfolio featuring Norma's Creations, CogniCube AI and MoonPups projects.">
+    <meta property="og:description" content="Full-stack developer specializing in desktop apps, web development, and blockchain. Explore my portfolio featuring reNamerX, QuickToken Platform, and more.">
     <meta property="og:image" content="og-image.jpg">
     <meta property="og:url" content="https://yourdomain.com">
     <meta property="og:type" content="website">
@@ -112,64 +117,60 @@
         </div>
     </div>
 
+    <!-- WebGL Background -->
+    <canvas id="shader-canvas"></canvas>
+
+    <!-- Click Prompt -->
+    <div class="click-prompt" id="click-prompt">
+        <div class="click-prompt-text">Click Anywhere to Explore</div>
+        <div class="click-prompt-icon">
+            <i class="fas fa-mouse"></i>
+        </div>
+    </div>
+
     <!-- Custom cursor -->
     <div class="cursor-dot" id="cursor-dot"></div>
     <div class="custom-cursor" id="custom-cursor"></div>
 
-    <div class="container">
-        <canvas id="shader-canvas"></canvas>
+    <div class="page-wrapper">
+        <!-- Header/Profile Section (Full Width) -->
+        <header class="profile-header">
+            <div class="profile"></div>
+        </header>
         
-        <div class="content" id="content">
-            <div class="profile" data-aos="fade-up">
-                <div class="profile-image-container">
-                    <div class="profile-image">
-                        <img src="assets/profilePicture.jpg" alt="Gabriel Cavazos">
-                    </div>
-                    <div class="profile-image-backdrop"></div>
-                    <div class="status-badge">Available for Work</div>
+        <!-- Two-Column Layout Container -->
+        <div class="columns-container">
+            <!-- Left Column -->
+            <div class="column column-left">
+                <div class="column-content" id="left-column-content">
+                    <!-- Creative Builds will be inserted here by JS -->
+                    <!-- Portfolio Highlights will be inserted here by JS -->
                 </div>
-                <h1 class="profile-name">Gabriel Cavazos</h1>
-                <p class="profile-bio">Premium Web Design & Development Services</p>
-                <div class="profile-tagline">Gigacode: Crafting digital experiences that elevate your brand</div>
             </div>
             
-            <div class="section" data-aos="fade-up" data-aos-delay="100">
-                <div class="section-header">
-                    <h2 class="section-title">Services</h2>
-                    <div class="section-divider"></div>
+            <!-- Right Column -->
+            <div class="column column-right">
+                <div class="column-content" id="right-column-content">
+                    <!-- Services will be inserted here by JS -->
+                    <!-- Marketplaces will be inserted here by JS -->
+                    <!-- Testimonials will be inserted here by JS -->
                 </div>
-                <div id="links-container" class="links-container"></div>
             </div>
-            
-            <footer class="footer" data-aos="fade-up" data-aos-delay="300">
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; <span id="current-year">2023</span> Gabriel Cavazos | All Rights Reserved</p>
                 <div class="social-links">
-                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://instagram.com/gabrielzosavac" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://github.com/gcavazo1" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="mailto:gcavazo1@gmail.com" class="social-link">
-                        <i class="fas fa-envelope"></i>
-                    </a>
+                    <a href="https://github.com/Gcavazo1" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                 </div>
-                <div class="copyright">
-                    &copy; <span id="current-year"></span> Gabriel Cavazos. All rights reserved.
-                </div>
-            </footer>
-        </div>
-        
-        <div class="click-prompt" id="click-prompt">
-            <div class="click-prompt-text">Click Anywhere to Explore</div>
-            <div class="click-prompt-icon">
-                <i class="fas fa-mouse"></i>
             </div>
-        </div>
+        </footer>
     </div>
-    
+
     <!-- Services Modal -->
     <div class="services-modal-overlay" id="services-modal-overlay">
         <div class="services-modal" id="services-modal">
@@ -492,9 +493,43 @@
     <script src="shaders.js"></script>
     <script src="script.js"></script>
     <script>
-        // Ensure cursor is visible immediately
-        window.addEventListener('DOMContentLoaded', function() {
-            // Initialize custom cursor as soon as DOM is ready
+        // Initialize shader when either script is loaded
+        window.addEventListener('load', function() {
+            // Check if shader is already initialized
+            if (typeof window.initShader === 'function') {
+                console.log('[Debug] Initializing shader from window.load');
+                window.initShader();
+            }
+        });
+        
+        // Initialize click-to-enter behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            const pageWrapper = document.querySelector('.page-wrapper');
+            const clickPrompt = document.getElementById('click-prompt');
+            
+            // Initially hide content
+            pageWrapper.style.opacity = '0';
+            
+            // Handle click anywhere to reveal content
+            document.addEventListener('click', function revealContent(e) {
+                // Get click position for the shader ripple effect
+                const x = e.clientX / window.innerWidth;
+                const y = 1.0 - e.clientY / window.innerHeight; // Invert Y for shader coordinates
+                
+                // Trigger the shader reveal effect
+                if (typeof window.revealContent === 'function') {
+                    window.revealContent(x, y);
+                }
+                
+                clickPrompt.classList.add('hidden');
+                pageWrapper.style.opacity = '1';
+                pageWrapper.style.transition = 'opacity 1.2s ease-in-out';
+                
+                // Only trigger once
+                document.removeEventListener('click', revealContent);
+            });
+            
+            // Initialize custom cursor
             if (typeof initCustomCursor === 'function') {
                 console.log('[Debug] Initializing custom cursor immediately');
                 initCustomCursor();

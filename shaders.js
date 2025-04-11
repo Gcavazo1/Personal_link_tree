@@ -52,8 +52,8 @@ window.revealContent = function(x, y) {
         // Animate the reveal progress
         gsap.to(uniforms.u_revealProgress, {
             value: 1,
-            duration: 2.2,
-            ease: "power3.out",
+            duration: 3.5,
+            ease: "power2.out",
             onUpdate: function() {
                 revealProgress = uniforms.u_revealProgress.value;
                 debugLog(`Reveal progress: ${revealProgress}`);
@@ -155,14 +155,14 @@ const fragmentShader = `
         vec2 p = position / resolution.xy;
         
         // Multi-layered flow for more complexity
-        float noise1 = fbm(vec2(p.x * scale - time * 0.3, p.y * scale - time * 0.2));
-        float noise2 = fbm(vec2(p.x * scale * 1.3 + time * 0.1 + 3.7, p.y * scale * 1.4 + time * 0.4 + 1.9));
+        float noise1 = fbm(vec2(p.x * scale - time * 0.12, p.y * scale - time * 0.08));
+        float noise2 = fbm(vec2(p.x * scale * 1.3 + time * 0.04 + 3.7, p.y * scale * 1.4 + time * 0.16 + 1.9));
         
         // Add vorticity
-        float vorticity = fbm(vec2(p.x * scale * 0.5 - time * 0.1, p.y * scale * 0.5 - time * 0.05));
+        float vorticity = fbm(vec2(p.x * scale * 0.5 - time * 0.04, p.y * scale * 0.5 - time * 0.02));
         
         // Create rotational component
-        float angle = vorticity * 6.0;
+        float angle = vorticity * 4.8;
         float s = sin(angle);
         float c = cos(angle);
         vec2 rotatedNoise = vec2(
@@ -170,7 +170,7 @@ const fragmentShader = `
             noise1 * s + noise2 * c
         );
         
-        return rotatedNoise * (0.5 + 0.5 * fbm(p * 2.0 + time * 0.05));
+        return rotatedNoise * (0.5 + 0.5 * fbm(p * 2.0 + time * 0.02));
     }
     
     // Particle system for added visual complexity
@@ -182,10 +182,10 @@ const fragmentShader = `
             // Create particle positions based on 3D hash with enhanced variation
             vec3 p = hash3(vec2(float(i), float(i * i)));
             
-            // Animate particles with slightly faster movement
+            // Animate particles with slower movement
             vec2 position = vec2(
-                fract(p.x + time * (0.15 + p.z * 0.12)),
-                fract(p.y + time * (0.08 + p.z * 0.07))
+                fract(p.x + time * (0.06 + p.z * 0.05)),
+                fract(p.y + time * (0.03 + p.z * 0.03))
             );
             
             // Calculate distance from uv to particle
@@ -208,7 +208,7 @@ const fragmentShader = `
         flow += vec2(mouseInfluence) * 0.1;
         
         // Get distorted position with improved displacement
-        vec2 distortedUV = uv + flow * 0.03;
+        vec2 distortedUV = uv + flow * 0.02;
         
         // Create luxury colors - premium gold & deep navy
         vec3 goldColor = vec3(0.83, 0.73, 0.45); // Rich gold
@@ -217,9 +217,9 @@ const fragmentShader = `
         vec3 accentBlue = vec3(0.3, 0.38, 0.5); // Blue accent
         
         // Create fluid patterns with fbm and domain warping
-        float fluid1 = fbm(distortedUV * scale + time * 0.1);
-        float fluid2 = fbm(distortedUV * scale * 1.5 - time * 0.15 + flow * 3.0);
-        float fluid3 = fbm(distortedUV * scale * 0.5 + time * 0.05 - flow * 2.0);
+        float fluid1 = fbm(distortedUV * scale + time * 0.05);
+        float fluid2 = fbm(distortedUV * scale * 1.5 - time * 0.06 + flow * 3.0);
+        float fluid3 = fbm(distortedUV * scale * 0.5 + time * 0.02 - flow * 2.0);
         
         // Combine patterns for rich fluid simulation
         float fluidPattern = fluid1 * 0.5 + fluid2 * 0.3 + fluid3 * 0.2;
@@ -242,7 +242,7 @@ const fragmentShader = `
         color += particleField * brightGold * 1.2;
         
         // Add swirling subtle color variations with more gold tint
-        color += vec3(0.05, 0.04, 0.01) * fbm(distortedUV * 8.0 + time * 0.05);
+        color += vec3(0.05, 0.04, 0.01) * fbm(distortedUV * 8.0 + time * 0.02);
         
         return color;
     }
@@ -435,16 +435,6 @@ function initShader() {
         // Add resize listener
         window.addEventListener('resize', onWindowResize, false);
         
-        // Add click listener to reveal content
-        canvas.addEventListener('click', function(e) {
-            debugLog('Canvas clicked');
-            if (!isRevealed) {
-                const x = (e.clientX / window.innerWidth) * 2 - 1;
-                const y = -(e.clientY / window.innerHeight) * 2 + 1;
-                window.revealContent(x, y);
-            }
-        });
-        
         // Ensure setupAnimations is accessible
         if (typeof window.setupAnimations === 'function') {
             debugLog('setupAnimations is available globally');
@@ -464,6 +454,9 @@ function initShader() {
         console.error(error);
     }
 }
+
+// Make function available globally
+window.initShader = initShader;
 
 // Handle window resize
 function onWindowResize() {
@@ -485,7 +478,7 @@ function animate() {
 // Render the scene
 function render() {
     if (uniforms) {
-        uniforms.u_time.value += 0.01;
+        uniforms.u_time.value += 0.004;
     }
     if (renderer && scene && camera) {
         renderer.render(scene, camera);

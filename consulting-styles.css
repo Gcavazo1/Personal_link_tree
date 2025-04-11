@@ -16,9 +16,26 @@
     --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+/* Custom Fonts for Digital Consulting */
+@font-face {
+    font-family: 'Rustic Roadway';
+    src: url('assets/fonts/RusticRoadway.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Wasted Vindey';
+    src: url('assets/fonts/Wasted-Vindey.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Global Styles */
 .consulting-page {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Wasted Vindey', 'Inter', sans-serif;
     color: var(--consulting-text);
     background-color: var(--consulting-dark);
     margin: 0;
@@ -153,12 +170,12 @@
 }
 
 .consulting-logo h1 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
     font-size: 2.5rem;
-    font-weight: 500;
+    font-weight: normal;
     color: var(--consulting-primary);
     margin: 0;
-    letter-spacing: 1px;
+    letter-spacing: 0.06em;
 }
 
 .tagline {
@@ -189,12 +206,13 @@
 }
 
 .hero-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
     font-size: 4.5rem;
-    font-weight: 600;
+    font-weight: normal;
     color: var(--consulting-primary);
     margin-bottom: 20px;
     line-height: 1.1;
+    letter-spacing: 0.07em;
 }
 
 .hero-subtitle {
@@ -222,6 +240,8 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
+    letter-spacing: 0.05em;
 }
 
 .cta-button::before {
@@ -272,13 +292,14 @@
 }
 
 .section-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
     font-size: 3rem;
-    font-weight: 600;
+    font-weight: normal;
     color: var(--consulting-light);
     margin-bottom: 20px;
     position: relative;
     display: inline-block;
+    letter-spacing: 0.06em;
 }
 
 /* Gold leaf accent for title */
@@ -370,7 +391,8 @@
     font-weight: 600;
     margin-bottom: 15px;
     color: var(--consulting-primary);
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
+    letter-spacing: 0.05em;
 }
 
 .service-content p {
@@ -461,10 +483,11 @@
 }
 
 .package-header h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 10px;
+    letter-spacing: 0.05em;
 }
 
 .package-price {
@@ -489,6 +512,8 @@
     margin-bottom: 15px;
     font-size: 0.95rem;
     line-height: 1.5;
+    font-family: 'Wasted Vindey', 'Inter', sans-serif;
+    letter-spacing: 0.02em;
 }
 
 .package-features li::before {
@@ -598,11 +623,12 @@
 }
 
 .step-content h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
     font-size: 1.6rem;
     font-weight: 600;
     color: var(--consulting-primary);
     margin-bottom: 10px;
+    letter-spacing: 0.05em;
 }
 
 .step-content p {
@@ -806,6 +832,8 @@
     cursor: pointer;
     transition: var(--transition-smooth);
     margin-top: 10px;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
+    letter-spacing: 0.05em;
 }
 
 .submit-button:hover {
@@ -845,7 +873,7 @@
 }
 
 .footer-logo h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Rustic Roadway', 'Cormorant Garamond', serif;
     font-size: 1.8rem;
     font-weight: 500;
     margin: 0 0 5px;

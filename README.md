@@ -15,14 +15,16 @@ A premium, interactive personal link tree with elegant animations and a luxury a
 - **Profile Section**: Clean profile display with status indicator
 - **Service Categories**: Showcase your services or skills
 - **Testimonials**: Display feedback from clients or colleagues
+- **Premium Fonts**: Custom typography using specialized display and body fonts
+- **Contact Form**: Elegant contact form with form validation (reCAPTCHA integration coming soon)
 
 ## Technologies Used
 
 - HTML5, CSS3, JavaScript
 - GSAP (GreenSock Animation Platform)
 - Three.js for WebGL shaders
-- AOS (Animate On Scroll)
-- Lenis for smooth scrolling
+- Custom Fonts (Rustic Roadway, Wasted Vindey)
+- Form validation and API integration
 
 ## Getting Started
 
@@ -59,6 +61,28 @@ const links = [
 
 The color scheme can be modified in the `:root` section of `styles.css`.
 
+## Pages
+
+### Home Page (index.html)
+The main link tree page with profile information, links, and services.
+
+### Digital Consulting (consulting.html)
+A dedicated page for consulting services featuring:
+- Interactive shader effects
+- Service packages
+- Process timeline
+- Testimonials
+
+### Contact Page (contact.html)
+A fully functional contact form page with:
+- Contact information
+- Social links
+- Form validation
+- Map integration
+
+## To-Do Items
+See the TODO.md file for upcoming improvements and features to be implemented.
+
 ## Credits
 
 - Created by Gabriel Cavazos
@@ -74,25 +98,4 @@ This project is available for personal use. For commercial use, please contact t
 - GitHub: [Gcavazo1](https://github.com/Gcavazo1)
 - Portfolio: [Dev Portfolio](https://gcavazo1.github.io/GigaCode_Dev_Showcase_Website/)
 - Fiverr: [Fiverr Profile](https://www.fiverr.com/s/6Y217ER)
-
-## New Digital Consulting Page
-
-The repository now includes a dedicated Digital Consulting page with these features:
-
-- **Interactive Shader Effects**: Advanced WebGL shaders provide dynamic visual effects that respond to user scrolling and mouse interactions.
-- **Scroll-Based Animations**: Page elements build themselves as the user scrolls down, creating an engaging experience.
-- **Elegant Design**: Premium aesthetic with carefully selected typography, colors, and spacing.
-- **Service Packages**: Showcases consulting offerings with attractive pricing and details.
-- **Interactive Process Timeline**: Visual representation of the consulting process steps.
-- **Client Testimonials**: Curated success stories to build trust and credibility.
-- **Contact Form**: Integrated inquiry form for potential clients.
-
-### Technical Features
-
-- Uses Three.js for WebGL shader rendering
-- Implements Lenis for smooth scrolling
-- GSAP animations for element transitions
-- Custom cursor effects for enhanced interactivity
-- Fully responsive across all device sizes
-
-Access the consulting page at `/consulting.html`. 
+- Email: gcavazo1@gmail.com 
